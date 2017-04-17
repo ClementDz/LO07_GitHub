@@ -8,7 +8,7 @@
     <body>
         <p>
             <a href="Nouveau_cursus.php"> Nouveau cursus </a>
-            <a href=""> Mes anciens cursus </a>
+            <a href="Ancien_cursus.php"> Mes anciens cursus </a>
             <a href="Auteurs_contact.php"> Les auteurs </a>
             <a href="Sources.php"> Les sources </a>
         </p>
