@@ -1,6 +1,7 @@
 <html>
     <head>
         <title>Gestion de cursus</title>
+        <link rel="stylesheet" type="text/css" href="../include/CSS/feuille.css" />
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -20,7 +21,7 @@
 
             <?php $Total_UE = array(); ?>
             <p>
-                <label>Numéro du semestre <i>ex: "1" si 1er semestre en TC</i></label>
+                <label>Numéro du semestre <i>(ex: "1" si 1er semestre d'ISI)</i></label>
                 <input type='radio' name="num_seq" value="1" required/>1
                 <input type='radio' name="num_seq" value="2" required/>2
                 <input type='radio' name="num_seq" value="3" required/>3
@@ -31,7 +32,7 @@
             </p>
             <p>
                 <label>Label du semestre </label>
-                <input type="text" name="sem_label" required placeholder="ex : TC1, ISI4..."/>
+                <input type="text" name="sem_label" required placeholder="ex : TC04, ISI2..."/>
             </p>
             <p>
                 <label>Sigle de l'UE</label>
@@ -51,11 +52,47 @@
 
              <p>
                 <label>Affectation</label>
-                <input type='radio' name="categorie" value="TC" required/>TC
-                <input type='radio' name="categorie" value="TCBR" required/>TCBR
-                <input type='radio' name="categorie" value="FCBR" required/>FCBR
+                <input type='radio' name="affectation" value="TC" required/>TC
+                <input type='radio' name="affectation" value="TCBR" required/>TCBR
+                <input type='radio' name="affectation" value="FCBR" required/>FCBR
 
             </p>
+            
+            <p>
+                <label>L'UE a t-elle été suivie à l'UTT?</label>
+                <input type='radio' name="utt" value="Y" required/>Oui
+                <input type='radio' name="utt" value="N" required/>Non
+            </p>
+            
+            <p>
+                <label>L'UE appartient-elle au profil de votre branche/filière?</label>
+                <input type='radio' name="profil" value="Y" required/>Oui
+                <input type='radio' name="profil" value="N" required/>Non
+            </p>
+            
+            <p>
+                <label>Résultat</label>
+                <input type='radio' name="resultat" value="A" required/>A
+                <input type='radio' name="resultat" value="B" required/>B
+                <input type='radio' name="resultat" value="C" required/>C
+                <input type='radio' name="resultat" value="D" required/>D
+                <input type='radio' name="resultat" value="E" required/>E
+                <input type='radio' name="resultat" value="F" required/>F
+                <input type='radio' name="resultat" value="Fx" required/>Fx
+                <input type='radio' name="resultat" value="ABS" required/>ABS
+                <input type='radio' name="resultat" value="EQU" required/>EQU
+                <input type='radio' name="resultat" value="RES" required/>RES
+                <input type='radio' name="resultat" value="ADM" required/>ADM
+            </p>
+            
+            <p>
+                <label>Crédits</label>
+                <input type='radio' name="credit" value="0" required/>0
+                <input type='radio' name="credit" value="4" required/>4
+                <input type='radio' name="credit" value="6" required/>6
+                <input type='radio' name="credit" value="30" required/>30
+            </p>
+            <!-- Trouver fonction qui associe la categorie au nb de credit (CS = 6) -->
             
             <input type='button' value ="ajouter une UE" onclick="affiche();"/>
             <!-- Faire des héritages avec la fonction affiche() de l'autre page -->

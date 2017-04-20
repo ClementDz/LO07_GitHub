@@ -60,6 +60,13 @@
                 </script>
 
 
+                </p
+                <p>
+                    <label>Filière</label>
+                    <input type="radio" name="filiere" value="TCBR"/>TCBR
+                    <input type="radio" name="filiere" value="MSI"/>MSI
+                    <input type="radio" name="filiere" value="MRI"/>MRI
+                    <input type="radio" name="filiere" value="MPL"/>MPL
                 </p>
                 <?php
                 // COMMENT RECUPERER $post[admi] DES LE CLIC ?
