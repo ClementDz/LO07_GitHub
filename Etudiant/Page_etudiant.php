@@ -7,18 +7,19 @@
 
     <body>
         <p>
-            <a href="Nouveau_cursus.php"> Nouveau cursus </a>
-            <a href="Ancien_cursus.php"> Mes anciens cursus </a>
-            <a href="Auteurs_contact.php"> Les auteurs </a>
-            <a href="Sources.php"> Les sources </a>
+            <a href="../Cursus/Nouveau_cursus.php">Nouveau cursus</a>
+            <a href="Page_etudiant.php"> Les étudiants</a>
+            <a href="Anciens_cours.php">Anciens cours</a>
+            <a href="../Auteurs_contact.php">Auteurs</a>
+            <a href="../Sources.php">Sources</a>
+            <a href="../Reglement/Les reglements.php">Règlements</a>s
         </p>
 
-        <h1>Connexion</h1>
+        <h1>Liste de tous vos cours enregistrés</h1>
 
-        <!-- Faire un se connecter / créer un compte ==> BASE DE DONNEE ?
-        ou session ?-->
+        <h1>Ajout d'un étudiant</h1>
 
-        <form method='POST' action="Page_demarrage.php">
+        <form method='POST' action="Page_etudiant.php">
             <fieldset>
                 <legend>Vos données étudiantes</legend>
                 <p> <label>Nom</label>
@@ -34,21 +35,33 @@
                 </p>
                 <p>
                     <label>Admission</label>
-                    <input type="radio" name="admi" value="TC" onclick="affichepas()"/>TC
-                    <input type="radio" name="admi" value="Branche"
-                           onclick="affiche()";>Branche
+                    <input type="radio" name="admi" value="TC"/>TC
+                    <input type="radio" name="admi" value="Branche">Branche
 
+                </p>
+                <p>
+                    <label>Votre filière actuelle</label>
+                    <input type="radio" name="filiere" value="TC" onclick="affichepas()"/>TC
+                    <input type="radio" name="filiere" value="TCBR" onclick="affichepas()"/>TCBR
+                    <input type="radio" name="filiere" value="FI"onclick="affiche();"/>Filière
+                    
                 <div id="ad"> </div>
                 <div id="ad1"> </div>
                 <div id="ad2"> </div>
-
+                <div id="ad3"> </div>
+                <div id="ad4"> </div>
+                <div id="ad5"> </div>
+                
                 <script type="text/javascript">
                     function affiche() {
                         document.getElementById("ad").innerHTML = "<p>";
-                        document.getElementById("ad1").innerHTML = "Filière";
-                        document.getElementById("ad2").innerHTML = "<input placeholder='MSI,MPL...? si en TCBR' type = 'text' name = 'filiere' required/>";
-                        document.getElementById("ad3").innerHTML = "</p>";
+                        document.getElementById("ad1").innerHTML = "<input type='radio' name='filiere' value='TCBR'/>TCBR";
+                        document.getElementById("ad2").innerHTML = "<input type='radio' name='filiere' value='MSI'/>MSI";
+                        document.getElementById("ad3").innerHTML = "<input type='radio' name='filiere' value='MPL'/>MPL";
+                        document.getElementById("ad4").innerHTML = "<input type='radio' name='filiere' value='MRI'/>MRI";
+                        document.getElementById("ad5").innerHTML = "</p>";
                     }
+
                 </script>  
                 <script type="text/javascript">
                     function affichepas() {
@@ -56,38 +69,19 @@
                         document.getElementById("ad1").innerHTML = "";
                         document.getElementById("ad2").innerHTML = "";
                         document.getElementById("ad3").innerHTML = "";
+                        document.getElementById("ad4").innerHTML = "";
+                        document.getElementById("ad5").innerHTML = "";
                     }
                 </script>
-
-
-                </p
-                <p>
-                    <label>Filière</label>
-                    <input type="radio" name="filiere" value="TCBR"/>TCBR
-                    <input type="radio" name="filiere" value="MSI"/>MSI
-                    <input type="radio" name="filiere" value="MRI"/>MRI
-                    <input type="radio" name="filiere" value="MPL"/>MPL
                 </p>
+
                 <?php
-                // COMMENT RECUPERER $post[admi] DES LE CLIC ?
-                //var_dump($_POST["admi"]);
-                /* if ($_POST["admi"] == "Branche"){
-                  echo("<p>");
-                  echo("<label>Filière</label>");
-                  echo("<i>Rentrer ? si vous êtes en TCBR</i>");
-                  echo("<input type = 'text' name = 'filiere' required/>");
-                  echo("</p>");
-                  }; */
                 ?>
 
                 <p>
                     <label>Email</label>
-                    <input type="email" name="email" required/>
+                    <input type="email" name="email" placeholder="prenom.nom@utt.fr"required/>
                     <!-- Ajouter validation mail -->
-                </p>
-                <p>
-                    <label>Mot de passe</label>
-                    <input type="password" name="mdp" required/>
                 </p>
             </fieldset>
 
@@ -103,7 +97,6 @@
 
 
 <?php
-
 function validmail() {
     if (isset($_POST["email"])) {
         $email_valide = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);
@@ -115,20 +108,17 @@ function validmail() {
     }
 }
 
-$nom = filter_input(INPUT_POST,"nom");
-$prenom = filter_input(INPUT_POST,"prenom");
-$num_etu = filter_input(INPUT_POST,"num_etu");
-session_start();
-$donnees=array($nom,$prenom,$num_etu);
+$nom = filter_input(INPUT_POST, "nom");
+$prenom = filter_input(INPUT_POST, "prenom");
+$num_etu = filter_input(INPUT_POST, "num_etu");
+//session_start();
+$donnees = array($nom, $prenom, $num_etu);
 
-foreach($donnees as $name => $value){
-    if (is_array($value)){
-        echo("<li>".$name. "=".implode(',',$value)."</li>");
-    }
-    else {
-        echo("<li>".$name. "=". $value."</li>");
+foreach ($donnees as $name => $value) {
+    if (is_array($value)) {
+        echo("<li>" . $name . "=" . implode(',', $value) . "</li>");
+    } else {
+        echo("<li>" . $name . "=" . $value . "</li>");
     }
 }
-//session_start();
-
 ?>
