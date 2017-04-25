@@ -7,19 +7,17 @@
 
     <body>
         <p>
-            <a href="../Cursus/Nouveau_cursus.php">Nouveau cursus</a>
-            <a href="Page_etudiant.php"> Les étudiants</a>
+            <a href="../Accueil.php">Accueil</a>
+            <a href="../Cursus/Liste_cursus.php">Cursus</a>
+            <a href="Liste_etudiants.php">Etudiants</a>
             <a href="Anciens_cours.php">Anciens cours</a>
             <a href="../Auteurs_contact.php">Auteurs</a>
             <a href="../Sources.php">Sources</a>
-            <a href="../Reglement/Les reglements.php">Règlements</a>s
+            <a href="../Reglement/Les reglements.php">Règlements</a>
         </p>
 
-        <h1>Liste de tous vos cours enregistrés</h1>
-
         <h1>Ajout d'un étudiant</h1>
-
-        <form method='POST' action="Page_etudiant.php">
+        <form method='POST' action="Nouvel_etudiant.php">
             <fieldset>
                 <legend>Vos données étudiantes</legend>
                 <p> <label>Nom</label>
@@ -44,22 +42,23 @@
                     <input type="radio" name="filiere" value="TC" onclick="affichepas()"/>TC
                     <input type="radio" name="filiere" value="TCBR" onclick="affichepas()"/>TCBR
                     <input type="radio" name="filiere" value="FI"onclick="affiche();"/>Filière
-                    
+
                 <div id="ad"> </div>
                 <div id="ad1"> </div>
                 <div id="ad2"> </div>
-                <div id="ad3"> </div>
-                <div id="ad4"> </div>
                 <div id="ad5"> </div>
-                
+                <div id="ad6"> </div>
+                <div id="ad7"> </div>
+
+
                 <script type="text/javascript">
                     function affiche() {
                         document.getElementById("ad").innerHTML = "<p>";
-                        document.getElementById("ad1").innerHTML = "<input type='radio' name='filiere' value='TCBR'/>TCBR";
-                        document.getElementById("ad2").innerHTML = "<input type='radio' name='filiere' value='MSI'/>MSI";
-                        document.getElementById("ad3").innerHTML = "<input type='radio' name='filiere' value='MPL'/>MPL";
-                        document.getElementById("ad4").innerHTML = "<input type='radio' name='filiere' value='MRI'/>MRI";
-                        document.getElementById("ad5").innerHTML = "</p>";
+                        document.getElementById("ad1").innerHTML = "<input type='radio' name='filiere' value='MSI'/>MSI";
+                        document.getElementById("ad2").innerHTML = "<input type='radio' name='filiere' value='MPL'/>MPL";
+                        document.getElementById("ad5").innerHTML = "<input type='radio' name='filiere' value='MRI'/>MRI";
+                        document.getElementById("ad6").innerHTML = "<input type='radio' name='filiere' value='MRI'/>Libre";
+                        document.getElementById("ad7").innerHTML = "</p>";
                     }
 
                 </script>  
@@ -97,6 +96,7 @@
 
 
 <?php
+
 function validmail() {
     if (isset($_POST["email"])) {
         $email_valide = filter_input(INPUT_POST, "email", FILTER_VALIDATE_EMAIL);

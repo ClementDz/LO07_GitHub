@@ -7,14 +7,14 @@
     </head>
 
     <body>
-        <a href="Nouveau_cursus.php">Nouveau cursus</a>
-        <a href="../Etudiant/Page_etudiant.php"> Les étudiants</a>
-        <a href="../Etudiant/Anciens_cours.php"> Anciens cours </a>
+        <a href="../Accueil.php">Accueil</a>
+        <a href="Liste_cursus.php">Cursus</a>
+        <a href="../Etudiant/Liste_etudiants.php">Etudiants</a>
+        <a href="../Etudiant/Anciens_cours.php">Anciens cours </a>
         <a href="../Auteurs_contact.php">Auteurs </a>
         <a href="../Sources.php">Sources </a>
         <a href="../Reglement/Les reglements.php">Règlements</a>
 
-        <h1>Mes cursus dèja enregistrés</h1>
         <h1> Veuillez rentrer les informations pour de futurs cursus </h1>
         <form method='post' action="####_action.php">
             <!-- Récupérer le nom + prénom + num étu + brance + filiere eventuelle

@@ -7,8 +7,9 @@
 
     <body>
         <p>
-            <a href="../Cursus/Nouveau_cursus.php">Nouveau cursus</a>
-            <a href="Page_etudiant.php">Les étudiants</a>
+            <a href="../Accueil.php">Accueil</a>
+            <a href="../Cursus/Liste_cursus.php">Cursus</a>
+            <a href="Liste_etudiants.php">Etudiant</a>
             <a href="Anciens_cours.php"> Anciens cours </a>
             <a href="../Auteurs_contact.php">Auteurs</a>
             <a href="../Sources.php">Sources</a>
@@ -100,7 +101,7 @@
                 </p>
             </fieldset>
             <!-- Trouver fonction qui associe la categorie au nb de credit (CS = 6) -->
-            
+
             <!-- On ne peut pas utiliser une fonction PHP dans l'event Onclik (ou faut passer par ajax)
             On va donc passer par du Js-->
 
