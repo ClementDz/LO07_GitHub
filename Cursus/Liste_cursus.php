@@ -1,7 +1,7 @@
 <html>  
     <head>  
-        <title>Page accueil</title>
-        <link rel="stylesheet" type="text/css" href="../include/CSS/feuille.css" />
+        <title>Liste des cursus</title>
+        <link rel="stylesheet" type="text/css" href="../include/CSS/style.css" />
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -29,4 +29,4 @@
     </body>
 </html>
 
-<?php ?>
+<?php ?> 
