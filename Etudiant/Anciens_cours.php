@@ -33,6 +33,7 @@
             <p><h1>Ajout de cours pour l'étudiant _____</h1></p>
 
         <p><h1>Ajout par recherche rapide</h1></p>
+        <i>Si l'UE souhaitée n'est pas dans la liste, veuillez l'ajouter manuellement</i>
     <!-- Voir lors cours BDD -->
     <p><form method="post" action="Anciens_cours.php" name="UE_ajout_rapide">
         <select name="ue_pre_remplies" size="5">
@@ -42,7 +43,7 @@
         </select>
         <p> <input type='submit' value='Ajouter cette UE'>
             <input type='button' value='Ajouter une UE manuellement'
-                   name="manuel" id="manuel" onclick="manuellement();"></p>
+                   id="manuel" onclick="manuellement();"></p>
     </form></p>
 
 <div id="ad"> </div>
@@ -127,6 +128,7 @@
     <p> <input type='submit' value='Ajouter cette UE' onclick="automatiquement();">
         <!-- Si submit cliqué alors stockage BDD + affichage dans la liste du dessus !!
         on peut en rentrer une autre -->
+        <input type='reset' value='Réinitialiser'>
 </form>
 
 

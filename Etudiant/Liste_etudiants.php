@@ -33,6 +33,7 @@
             
             <div>
                 <p><h1>Etudiants enregistrés</h1></p>
+                Ajouter "supprimer" "modifier" pour chaque étudiant
                 <ol>
                     <li>Etu_ex_1: BOOOOOB + a suivi MATH01....</li>
                     <li>Etu_ex_2: BAAAAAB</li>
