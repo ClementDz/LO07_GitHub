@@ -26,12 +26,15 @@
                     <li><a href="Auteurs_contact.php">Auteurs </a></li>
                     <li><a href="Sources.php">Sources </a></li>
                     <li><a href="Reglement/Les reglements.php">Règlements</a></li>
-                    <li class="last"><a href="#">Contact</a></li>
+                    <!--<li class="last"><a href="#">Contact</a></li>-->
                 </ul>
                 <br class="clearfix" />
+                
+            <div>Explications sur le fonctionnement du site ci-dessous</div>
+                
             </div>
             <div id="splash">
-                <img class="pic" src="images/pic01.jpg" width="870" height="230" alt="" />
+                <img class="pic" src="images/utt.png" width="870" height="230" alt="" />
             </div>
 
     </body>

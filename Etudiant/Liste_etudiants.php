@@ -30,19 +30,34 @@
                 </ul>
                 <br class="clearfix" />
             </div>
-            
+
             <div>
                 <p><h1>Etudiants enregistrés</h1></p>
-                Ajouter "supprimer" "modifier" pour chaque étudiant
-                <ol>
-                    <li>Etu_ex_1: BOOOOOB + a suivi MATH01....</li>
-                    <li>Etu_ex_2: BAAAAAB</li>
-                    <li></li>
-                </ol>
+            <i>Cliquez sur le nom de l'étudiant pour le modifier ou le supprimer</i>
 
-            <form name="nouv_etu" action="Nouvel_etudiant.php" method="POST">
-                <p> <input type='submit' value='Ajouter un etudiant'></p>
-            </form>
+                <form method="post" action="###.php">
+
+                    <label>Liste des étudiants dans la BDD</label><br />
+                    <select size="10">
+                        <?php
+                        try {
+                            $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
+                        } catch (Exception $e) {
+                            die('Erreur : ' . $e->getMessage());
+                        }
+                        $reponse = $bdd->query('SELECT * FROM base_etu');
+                        while ($donnees = $reponse->fetch()) {
+                            ?>
+                        <option> <?php echo $donnees['nom'].'&nbsp;'. $donnees['prenom']; ?></option>
+                            <?php
+                        }
+                        $reponse->closeCursor();
+                        ?>
+                    </select>
+                </form> 
+                    <form name="nouv_etu" action="Nouvel_etudiant.php" method="POST">
+                        <p> <input type='submit' value='Ajouter un etudiant'></p>
+                    </form>
             </div>
 
     </body>

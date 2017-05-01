@@ -2,7 +2,6 @@
 <html>
 <?php
 include("Connexion_BDD.php");
- 
 connexion();
  
 $sql= "CREATE TABLE IF NOT EXISTS `mabase` (";

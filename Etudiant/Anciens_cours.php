@@ -30,10 +30,10 @@
                 <br class="clearfix" />
             </div>
 
-            <p><h1>Ajout de cours pour l'étudiant _____</h1></p>
+            <p><h1>Ajout de cours pour l'étudiant <?php dernier_etu(); ?></h1></p>
 
         <p><h1>Ajout par recherche rapide</h1></p>
-        <i>Si l'UE souhaitée n'est pas dans la liste, veuillez l'ajouter manuellement</i>
+    <i>Si l'UE souhaitée n'est pas dans la liste, veuillez l'ajouter manuellement</i>
     <!-- Voir lors cours BDD -->
     <p><form method="post" action="Anciens_cours.php" name="UE_ajout_rapide">
         <select name="ue_pre_remplies" size="5">
@@ -149,5 +149,19 @@
 </body>  
 </html>
 
+
 <?php
+function dernier_etu() {
+    try {
+        $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
+    } catch (Exception $e) {
+        die('Erreur : ' . $e->getMessage());
+    }
+    
+$req = $bdd->query('SELECT nom, prenom FROM base_etu WHERE id=(SELECT max(id) FROM base_etu)');
+while ($donnees2 = $req->fetch()) {
+    echo $donnees2['nom'] .'&nbsp;'. $donnees2['prenom'];
+}
+$req->closeCursor();
+}
 ?>
