@@ -31,7 +31,7 @@
             </div>
 
             <p><h1>Cursus enregistrés</h1></p>
-            Modifier / effacer / dupliquer + exporter importer CSV
+            Modifier / effacer / dupliquer
             <ol>
                 <li>Cursus_ex_1: IF02, GL98</li>
                 <li>Cursus_ex_1: IF03, GL99</li>
@@ -45,4 +45,23 @@
     </body>
 </html>
 
-<?php ?> 
+<?php
+
+//Enregistrer dans un fichier csv
+function persistance() {
+    $filename = "mes_cursus.csv";
+    var_dump(file_exists($filename));
+    if (!file_exists($filename)) {
+        $titre = array("jour", "mois", "salle");
+        $ligne = implode(";", $titre);
+        touch($filename); //Modifie la date de modification
+        file_put_contents($filename, $ligne, FILE_APPEND); //écrit une ligne
+        // FILE_APPEND permet d'ajouter les data a la fin si on a deja un meme filename
+    } else {
+        $ligne = filter_input(INPUT_POST, "jour");
+        $ligne = filter_input(INPUT_POST, "mois");
+        $ligne = filter_input(INPUT_POST, "salle");
+
+        file_put_contents($filename, $ligne, FILE_APPEND);
+    }
+}?> 
