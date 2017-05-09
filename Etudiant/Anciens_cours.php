@@ -30,77 +30,87 @@
                 <br class="clearfix" />
             </div>
 
-            <p><h1>Ajout de cours pour l'étudiant <?php etu_selec(); ?></h1></p>
 
-        <p><h1>Ajout par recherche rapide</h1></p>
-    <i>Si l'UE souhaitée n'est pas dans la liste, veuillez l'ajouter manuellement</i>
-    <!-- Voir lors cours BDD -->
-    <p><form method="post" action="Anciens_cours.php" name="UE_ajout_rapide">
-        <select name="ue_pre_remplies" size="5">
-            <OPTION>IF99</option>
-            <OPTION>IF77</option>
-            <OPTION >IFEE</option>
-        </select>
-        <p> <input type='submit' value='Ajouter cette UE'>
-            <input type='button' value='Ajouter une UE manuellement'
-                   id="manuel" onclick="manuellement();"></p>
-    </form></p>
+            <p><h1>Ajout par recherche rapide</h1></p>
+        <i>Si l'UE souhaitée n'est pas dans la liste, veuillez l'ajouter manuellement</i>
+        <!-- Voir lors cours BDD -->
+        <p><form method="post" action="Anciens_cours.php" name="UE_ajout_rapide">
+            <select name="ue_pre_remplies" size="10">
+                <?php
+                try {
+                    $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
+                } catch (Exception $e) {
+                    die('Erreur : ' . $e->getMessage());
+                }
+                $reponse = $bdd->query('SELECT * FROM element_formation');
+                while ($donnees = $reponse->fetch()) {
+                    ?>
+                    <option> <?php echo $donnees['sigle']; ?></option>
+                    <?php
+                }
+                $reponse->closeCursor();
+                ?>
+            </select>
+            <p> <input type='button' value="Ajouter cette UE à l'étudiant" id="manuel2" onclick="manuellement2();">
+                <input type='button' value='Ajouter une UE à la BDD'
+                       id="manuel" onclick="manuellement();"></p>
+        </form></p>
 
-<div id="ad"> </div>
-<form method='post' action="####_action.php" hidden id="ajout_manuel">
-    <?php $Total_UE = array(); ?>
+    <div id="ad"> </div>
+    <form method='post' action="../BDD/add_cours.php" hidden id="ajout_manuel">
+        <?php $Total_UE = array(); ?>
+        <fieldset>
+            <legend>Ajout d'une UE</legend>
+
+            <p>
+                <label>Sigle de l'UE</label>
+                <input type="text" name="sigle" required placeholder='ex : ST09, LO07, BULE'/>
+            </p>
+            <p>
+                <label>Catégorie</label>
+                <input type='radio' name="categorie" value="CS" required/>CS
+                <input type='radio' name="categorie" value="TM" required/>TM
+                <input type='radio' name="categorie" value="EC" required/>EC
+                <input type='radio' name="categorie" value="ME" required/>ME
+                <input type='radio' name="categorie" value="HT" required/>HT
+                <input type='radio' name="categorie" value="NPML" required/>NPML
+
+            </p>
+
+            <p>
+                <label>Affectation</label>
+                <input type='radio' name="affectation" value="TC" required/>TC
+                <input type='radio' name="affectation" value="TCBR" required/>TCBR
+                <input type='radio' name="affectation" value="FCBR" required/>FCBR
+
+            </p>
+
+            <p>
+                <label>L'UE a t-elle été suivie à l'UTT?</label>
+                <input type='radio' name="utt" value="Y" required/>Oui
+                <input type='radio' name="utt" value="N" required/>Non
+            </p>
+
+            <p>
+                <label>L'UE appartient-elle au profil de votre branche/filière?</label>
+                <input type='radio' name="profil" value="Y" required/>Oui
+                <input type='radio' name="profil" value="N" required/>Non
+            </p> <?php hp() ?>)
+                
+        </fieldset>
+
+        <p> <input type='submit' value='Ajouter cette UE' onclick="automatiquement();">
+            <!-- Si submit cliqué alors stockage BDD + affichage dans la liste du dessus !!
+            on peut en rentrer une autre -->
+            <input type='reset' value='Réinitialiser'>
+    </form>
+
+    <p><h1>Ajout de cours pour l'étudiant <?php etu_selec(); ?></h1></p>
+
+<div id="ad1"> </div>
+<form method='post' action="../BDD/add_cursus.php" hidden id="ajout_manuel2">
     <fieldset>
-        <legend>Ajout d'une UE</legend>
-        <p>
-            <label>Numéro du semestre <i>(ex: "1" si 1er semestre d'ISI)</i></label>
-            <input type='radio' name="num_seq" value="1" required/>1
-            <input type='radio' name="num_seq" value="2" required/>2
-            <input type='radio' name="num_seq" value="3" required/>3
-            <input type='radio' name="num_seq" value="4" required/>4
-            <input type='radio' name="num_seq" value="5" required/>5
-            <input type='radio' name="num_seq" value="6" required/>6
-
-        </p>
-        <p>
-            <label>Label du semestre </label>
-            <input type="text" name="sem_label" required placeholder="ex : TC04, ISI2..."/>
-        </p>
-        <p>
-            <label>Sigle de l'UE</label>
-            <input type="text" name="sigle" required placeholder='ex : ST09, LO07, BULE'/>
-        </p>
-        <p>
-            <label>Catégorie</label>
-            <input type='radio' name="categorie" value="CS" required/>CS
-            <input type='radio' name="categorie" value="TM" required/>TM
-            <input type='radio' name="categorie" value="EC" required/>EC
-            <input type='radio' name="categorie" value="ME" required/>ME
-            <input type='radio' name="categorie" value="HT" required/>HT
-            <input type='radio' name="categorie" value="HP" required/>HP
-            <input type='radio' name="categorie" value="NPML" required/>NPML
-
-        </p>
-
-        <p>
-            <label>Affectation</label>
-            <input type='radio' name="affectation" value="TC" required/>TC
-            <input type='radio' name="affectation" value="TCBR" required/>TCBR
-            <input type='radio' name="affectation" value="FCBR" required/>FCBR
-
-        </p>
-
-        <p>
-            <label>L'UE a t-elle été suivie à l'UTT?</label>
-            <input type='radio' name="utt" value="Y" required/>Oui
-            <input type='radio' name="utt" value="N" required/>Non
-        </p>
-
-        <p>
-            <label>L'UE appartient-elle au profil de votre branche/filière?</label>
-            <input type='radio' name="profil" value="Y" required/>Oui
-            <input type='radio' name="profil" value="N" required/>Non
-        </p>
-
+        <legend>Résultat à l'UE</legend>
         <p>
             <label>Résultat</label>
             <input type='radio' name="resultat" value="A" required/>A
@@ -123,53 +133,75 @@
             <input type='radio' name="credit" value="6" required/>6
             <input type='radio' name="credit" value="30" required/>30
         </p>
-    </fieldset>
+        <p>
+            <label>Numéro du semestre <i>(ex: "1" si 1er semestre d'ISI)</i></label>
+            <input type='radio' name="sem_seq" value="1" required/>1
+            <input type='radio' name="sem_seq" value="2" required/>2
+            <input type='radio' name="sem_seq" value="3" required/>3
+            <input type='radio' name="sem_seq" value="4" required/>4
+            <input type='radio' name="sem_seq" value="5" required/>5
+            <input type='radio' name="sem_seq" value="6" required/>6
 
-    <p> <input type='submit' value='Ajouter cette UE' onclick="automatiquement();">
-        <!-- Si submit cliqué alors stockage BDD + affichage dans la liste du dessus !!
-        on peut en rentrer une autre -->
-        <input type='reset' value='Réinitialiser'>
-</form>
+        </p>
+        <p>
+            <label>Label du semestre </label>
+            <input type="text" name="sem_label" required placeholder="ex : TC04, ISI2..."/>
+        </p>
+        <input type='submit' value="Valider cette UE">
+        </form>
+
+        <script type="text/javascript">
+            //fonction Js permettant supprimer element hidden du form
+            function manuellement() {
+                document.getElementById("ad").innerHTML = "<p><h1>Ajout manuel</h1></p>";
+                var y = document.getElementById("ajout_manuel");
+                y.style.display = "inline";
+            }
+            // Cacher l'ajout d'un element manuellement
+            function automatiquement() {
+                var y = document.getElementById("ajout_manuel");
+                y.style.display = "hidden";
+            }
+            function manuellement2() {
+                document.getElementById("ad1").innerHTML = "<p><h1>Ajout manuel</h1></p>";
+                var y = document.getElementById("ajout_manuel2");
+                y.style.display = "inline";
+            }
+        </script> 
 
 
-<script type="text/javascript">
-    //fonction Js permettant supprimer element hidden du form
-    function manuellement() {
-        document.getElementById("ad").innerHTML = "<p><h1>Ajout manuel</h1></p>";
-        var y = document.getElementById("ajout_manuel");
-        y.style.display = "inline";
-    }
-    // Cacher l'ajout d'un element manuellement
-    function automatiquement() {
-        var y = document.getElementById("ajout_manuel");
-        y.style.display = "hidden";
-    }
-</script> 
 
-</body>  
-</html>
+        </body>  
+        </html>
 
 
-<?php
-function etu_selec() {
-    if (isset($_POST['mon_etu'])){
-        $etudiant = $_POST['mon_etu'];
-        print_r('<i>'.$etudiant.'</i>');
-        //echo $_POST['nom'].$_POST['fonction'];
-    }
-    else echo'Erreur, ne rentre pas dans boucle';
-}
+        <?php
 
-function ajout() {
-        /*try {
-        $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
-    } catch (Exception $e) {
-        die('Erreur : ' . $e->getMessage());
-    }
-    
-$req = $bdd->query('SELECT nom, prenom FROM base_etu WHERE id=(SELECT max(id) FROM base_etu)');
-while ($donnees2 = $req->fetch()) {
-    echo $donnees2['nom'] .'&nbsp;'. $donnees2['prenom'];
-}
-$req->closeCursor();*/ }
-?>
+        function etu_selec() {
+            if (isset($_POST['mon_etu'])) {
+                $etudiant = $_POST['mon_etu'];
+                print_r('<i>' . $etudiant . '</i>');
+            } else
+                echo'Erreur, veuillez resélectionner un étudiant';
+        }
+
+        function hp() {
+            if($_POST['profil']='N'){
+                //$_POST['categorie'].value =
+            }
+        }
+        
+        function ajout() {
+            /* try {
+              $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
+              } catch (Exception $e) {
+              die('Erreur : ' . $e->getMessage());
+              }
+
+              $req = $bdd->query('SELECT nom, prenom FROM base_etu WHERE id=(SELECT max(id) FROM base_etu)');
+              while ($donnees2 = $req->fetch()) {
+              echo $donnees2['nom'] .'&nbsp;'. $donnees2['prenom'];
+              }
+              $req->closeCursor(); */
+        }
+        ?>
