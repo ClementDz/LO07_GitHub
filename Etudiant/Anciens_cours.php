@@ -30,7 +30,7 @@
                 <br class="clearfix" />
             </div>
 
-            <p><h1>Ajout de cours pour l'étudiant <?php dernier_etu(); ?></h1></p>
+            <p><h1>Ajout de cours pour l'étudiant <?php etu_selec(); ?></h1></p>
 
         <p><h1>Ajout par recherche rapide</h1></p>
     <i>Si l'UE souhaitée n'est pas dans la liste, veuillez l'ajouter manuellement</i>
@@ -151,8 +151,17 @@
 
 
 <?php
-function dernier_etu() {
-    try {
+function etu_selec() {
+    if (isset($_POST['mon_etu'])){
+        $etudiant = $_POST['mon_etu'];
+        print_r('<i>'.$etudiant.'</i>');
+        //echo $_POST['nom'].$_POST['fonction'];
+    }
+    else echo'Erreur, ne rentre pas dans boucle';
+}
+
+function ajout() {
+        /*try {
         $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
     } catch (Exception $e) {
         die('Erreur : ' . $e->getMessage());
@@ -162,6 +171,5 @@ $req = $bdd->query('SELECT nom, prenom FROM base_etu WHERE id=(SELECT max(id) FR
 while ($donnees2 = $req->fetch()) {
     echo $donnees2['nom'] .'&nbsp;'. $donnees2['prenom'];
 }
-$req->closeCursor();
-}
+$req->closeCursor();*/ }
 ?>

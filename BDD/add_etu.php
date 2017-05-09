@@ -14,7 +14,7 @@ catch(Exception $e)
 }
 
 // Insertion du message à l'aide d'une requête préparée
-$req = $bdd->prepare('INSERT INTO base_etu(nom, prenom, num_etu, admi, filiere, email) VALUES(:nom, :prenom, :num_etu, :admi, :filiere, :email)');
+$req = $bdd->prepare('INSERT INTO etudiant(nom, prenom, num_etu, admi, filiere, email) VALUES(:nom, :prenom, :num_etu, :admi, :filiere, :email)');
 $req->execute(array(
 	'nom' => $_POST['nom'],
 	'prenom' => $_POST['prenom'],

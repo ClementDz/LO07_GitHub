@@ -122,7 +122,7 @@
         }
 
         // Récupération des 10 derniers messages
-        $reponse = $bdd->query('SELECT nom, prenom, num_etu, admi, filiere, email FROM Base_etu');
+        $reponse = $bdd->query('SELECT nom, prenom, num_etu, admi, filiere, email FROM etudiant');
         $reponse->closeCursor();
         
         ?>
