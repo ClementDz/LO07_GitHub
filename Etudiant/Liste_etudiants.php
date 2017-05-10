@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <html>  
     <head>  
         <title>Liste étudiants</title>
@@ -20,9 +21,9 @@
             <div id="menu">
                 <ul>
                     <li><a href="../Accueil.php">Accueil</a></li>
-                    <li><a href="../Cursus/Liste_cursus.php">Cursus</a></li>
+                    <li><a href="../Cursus/Liste_cursus.php">Futurs cours</a></li>
                     <li><a href="Liste_etudiants.php">Etudiants</a></li>
-                    <li><a href="Anciens_cours.php">Anciens cours</a></li>
+                    <li><a href="Anciens_cours.php">Mes cursus</a></li>
                     <!-- A ne pas montrer dans la version finale -->
                     <li><a href="../Auteurs_contact.php">Auteurs</a></li>
                     <li><a href="../Sources.php">Sources</a></li>
@@ -60,7 +61,7 @@
 
                 <p>
                 <form name="nouv_etu" action="Nouvel_etudiant.php" method="POST">
-                    <p><input type='submit' value='Ajouter un etudiant'></p>
+                    <p><input type='submit' value='Ajouter un etudiant à la BDD'></p>
                 </form>
                 </p>
                 

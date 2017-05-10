@@ -20,9 +20,9 @@
             <div id="menu">
                 <ul>
                     <li><a href="../Accueil.php">Accueil</a></li>
-                    <li><a href="Liste_cursus.php">Cursus</a></li>
+                    <li><a href="Liste_cursus.php">Futurs cours</a></li>
                     <li><a href="../Etudiant/Liste_etudiants.php">Etudiants</a></li>
-                    <li><a href="../Etudiant/Anciens_cours.php"> Anciens cours </a></li>
+                    <li><a href="../Etudiant/Anciens_cours.php">Mes cursus</a></li>
                     <li><a href="../Auteurs_contact.php">Auteurs </a></li>
                     <li><a href="../Sources.php">Sources </a></li>
                     <li><a href="Reglement/Les reglements.php">Règlements</a></li>
@@ -30,8 +30,8 @@
                 <br class="clearfix" />
             </div>
 
-            <p><h1>Cursus enregistrés</h1></p>
-            Modifier / effacer / dupliquer
+            <p><h1>Futurs cours</h1></p>
+            Modifier / effacer / dupliquer / tester avec ce cursus
             <ol>
                 <li>Cursus_ex_1: IF02, GL98</li>
                 <li>Cursus_ex_1: IF03, GL99</li>

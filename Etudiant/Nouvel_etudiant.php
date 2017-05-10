@@ -74,7 +74,7 @@
                         document.getElementById("ad1").innerHTML = "<input type='radio' name='filiere' value='MSI'/>MSI";
                         document.getElementById("ad2").innerHTML = "<input type='radio' name='filiere' value='MPL'/>MPL";
                         document.getElementById("ad3").innerHTML = "<input type='radio' name='filiere' value='MRI'/>MRI";
-                        document.getElementById("ad4").innerHTML = "<input type='radio' name='filiere' value='MRI'/>Libre";
+                        document.getElementById("ad4").innerHTML = "<input type='radio' name='filiere' value='Libre'/>Libre";
                         document.getElementById("ad5").innerHTML = "</p>";
                     }
 

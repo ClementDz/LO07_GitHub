@@ -25,6 +25,6 @@ $req->execute(array(
 	));
 
 // Redirection du visiteur vers la page du minichat
-header('Location: ../Etudiant/Anciens_cours.php');
+header('Location: ../Etudiant/Liste_etudiants');
 //mysql_query($sql) or die(mysql_error());
 ?>
