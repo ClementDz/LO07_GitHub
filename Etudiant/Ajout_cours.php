@@ -105,9 +105,7 @@
                     $donnees = $reponse->fetchColumn(1);
                     $_SESSION['affectation'] = $donnees;
                     
-                    //Celle ci ne marche pas ...
-                    $donnees = $reponse->fetchColumn();
-                    var_dump($_SESSION['sigle'] = $donnees);
+                    var_dump($_SESSION['sigle'] = $cours);
                     
                     }
             } else

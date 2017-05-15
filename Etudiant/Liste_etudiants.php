@@ -42,6 +42,7 @@
                     <label>Liste des étudiants dans la BDD</label><br />
                     <select size="10" name="mon_etu">
                         <?php
+                        //Affiche tous les étudiants de la base
                         try {
                             $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
                         } catch (Exception $e) {
@@ -54,6 +55,18 @@
                             <?php
                         }
                         $reponse->closeCursor();
+                        
+                        //Transmet directement le numéro étudiant de l'etu selec dans la session
+                        $nom = $donnes['nom'];
+                        try {
+                        $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
+                        } catch (Exception $e) {
+                            die('Erreur : ' . $e->getMessage());
+                        }
+                        $reponse2 = $bdd->query('SELECT num_etu FROM etudiant WHERE nom="'.$nom.'"');
+                        $donnees2 = $reponse2->fetch();
+                        $_SESSION['num_etu'] = $donnees2;
+                        $reponse2->closeCursor();
                         ?>
                     </select>
                     <p> <input type='submit' value='Ajouter un cursus pour cet étudiant'></p>
@@ -64,7 +77,7 @@
                     <p><input type='submit' value='Ajouter un etudiant à la BDD'></p>
                 </form>
                 </p>
-                
+
                 <fieldset>
                     <legend>Importation d'un cursus au format CSV</legend>
                     <form name="import_csv" action="../CSV/import_csv.php" method="POST">
@@ -72,7 +85,7 @@
                         <p> <input type='submit' value='Importer'></p>
                     </form>
                 </fieldset>
-                
+
             </div>
 
     </body>

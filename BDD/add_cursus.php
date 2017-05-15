@@ -7,21 +7,20 @@ try {
     die('Erreur : ' . $e->getMessage());
 }
 
-//QUAND ON AJOUTE SEULEMENT 2 ELMT DS 1 TAB A 2 COLONNE CA MARCHE
 // Insertion du message à l'aide d'une requête préparée
-$req = $bdd->prepare('INSERT INTO cursus(resultat, credit, sem_seq, sem_label) VALUES(:resultat, :credit, :sem_seq, :sem_label)');
+$req = $bdd->prepare('INSERT INTO cursus(resultat, credit, sem_seq, sem_label, label_cursus, affectation, sigle, num_etu) VALUES(:resultat, :credit, :sem_seq, :sem_label, :label_cursus, :affectation, :sigle, :num_etu)');
 $req->execute(array(
+    //Récupère via le formulaire précédent
     'resultat' => $_POST['resultat'],
     'credit' => $_POST['credit'],
     'sem_seq' => $_POST['sem_seq'],
     'sem_label' => $_POST['sem_label'],
     
     //Comment faire pour creer une var dynamiquement ==> en fonction du num_etu ?
-    //'label_cursus' => $_SESSION['label_cursus'],    
+    'sigle' => $_SESSION['sigle'],
+    'label_cursus' => $_SESSION['num_etu'],
     'affectation' => $_SESSION['affectation'],
-    //'sigle' => $_SESSION['sigle'],
-    'num_etu' => $_SESSION['num_etu'],
-    
+    'num_etu' => $_SESSION['num_etu']
 ));
 
 
