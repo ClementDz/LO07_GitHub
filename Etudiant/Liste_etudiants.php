@@ -45,28 +45,17 @@
                         //Affiche tous les étudiants de la base
                         try {
                             $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
+                            $reponse = $bdd->query('SELECT * FROM etudiant');
+                            while ($donnees = $reponse->fetch()) {
+                                ?>
+                                <option> <?php echo $donnees['nom'] . ' ' . $donnees['prenom']; ?></option>
+                                <?php
+                            }
+                            $reponse->closeCursor();
                         } catch (Exception $e) {
                             die('Erreur : ' . $e->getMessage());
                         }
-                        $reponse = $bdd->query('SELECT * FROM etudiant');
-                        while ($donnees = $reponse->fetch()) {
-                            ?>
-                            <option> <?php echo $donnees['nom'] . '&nbsp;' . $donnees['prenom']; ?></option>
-                            <?php
-                        }
-                        $reponse->closeCursor();
-                        
-                        //Transmet directement le numéro étudiant de l'etu selec dans la session
-                        $nom = $donnes['nom'];
-                        try {
-                        $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
-                        } catch (Exception $e) {
-                            die('Erreur : ' . $e->getMessage());
-                        }
-                        $reponse2 = $bdd->query('SELECT num_etu FROM etudiant WHERE nom="'.$nom.'"');
-                        $donnees2 = $reponse2->fetch();
-                        $_SESSION['num_etu'] = $donnees2;
-                        $reponse2->closeCursor();
+
                         ?>
                     </select>
                     <p> <input type='submit' value='Ajouter un cursus pour cet étudiant'></p>

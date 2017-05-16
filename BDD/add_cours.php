@@ -7,23 +7,24 @@
 
 try {
     $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
-} catch (Exception $e) {
-    die('Erreur : ' . $e->getMessage());
-}
-echo'test';
+    echo'test';
 
-//QUAND ON AJOUTE SEULEMENT 2 ELMT DS 1 TAB A 2 COLONNE CA MARCHE
 // Insertion du message à l'aide d'une requête préparée
-$req = $bdd->prepare('INSERT INTO element_formation(sem_seq, sem_label, sigle, affectation, categorie, utt, profil) VALUES(:sem_seq, :sem_label, :sigle, :affectation, :categorie, :utt, :profil)');
+$req = $bdd->prepare('INSERT INTO element_formation(sigle, affectation, categorie, utt, profil) VALUES(:sigle, :affectation, :categorie, :utt, :profil)');
 $req->execute(array(
-    'sem_seq' => $_POST['sem_seq'],
-    'sem_label' => $_POST['sem_label'],
     'sigle' => $_POST['sigle'],
     'affectation' => $_POST['affectation'],
     'categorie' => $_POST['categorie'],
     'utt' => $_POST['utt'],
     'profil' => $_POST['profil']
 ));
+
+
+
+} catch (Exception $e) {
+    die('Erreur : ' . $e->getMessage());
+}
+
 
 
 // Redirection du visiteur vers la page du minichat

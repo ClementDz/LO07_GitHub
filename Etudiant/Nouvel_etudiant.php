@@ -63,8 +63,8 @@
                 <div id="ad"> </div>
                 <div id="ad1"> </div>
                 <div id="ad2"> </div>
-                <div id="ad3"> </div>
-                <div id="ad4"> </div>
+                <div id="ad9"> </div>
+                <div id="ad10"> </div>
                 <div id="ad5"> </div>
 
 
@@ -73,8 +73,8 @@
                         document.getElementById("ad").innerHTML = "<p>";
                         document.getElementById("ad1").innerHTML = "<input type='radio' name='filiere' value='MSI'/>MSI";
                         document.getElementById("ad2").innerHTML = "<input type='radio' name='filiere' value='MPL'/>MPL";
-                        document.getElementById("ad3").innerHTML = "<input type='radio' name='filiere' value='MRI'/>MRI";
-                        document.getElementById("ad4").innerHTML = "<input type='radio' name='filiere' value='Libre'/>Libre";
+                        document.getElementById("ad9").innerHTML = "<input type='radio' name='filiere' value='MRI'/>MRI";
+                        document.getElementById("ad10").innerHTML = "<input type='radio' name='filiere' value='Libre'/>Libre";
                         document.getElementById("ad5").innerHTML = "</p>";
                     }
 
@@ -84,8 +84,8 @@
                         document.getElementById("ad").innerHTML = "";
                         document.getElementById("ad1").innerHTML = "";
                         document.getElementById("ad2").innerHTML = "";
-                        document.getElementById("ad3").innerHTML = "";
-                        document.getElementById("ad4").innerHTML = "";
+                        document.getElementById("ad9").innerHTML = "";
+                        document.getElementById("ad10").innerHTML = "";
                         document.getElementById("ad5").innerHTML = "";
                     }
                 </script>

@@ -62,31 +62,59 @@ session_start();
     </form></p>
 
 <h3>UE présentes dans mon cursus</h3>
+
 <?php
-//On définir le num étu dans une var (pour la future requete SQL)
-echo($_SESSION['num_etu']);
-//La variable de session n'est pas bien définie
-$numero = $_SESSION['num_etu'];
+//ne marche pas en passant par la fonction
+//actualise_numetu();
+
+    if(isset($_POST['mon_etu'])){
+    $nom_et_prenom = $_POST['mon_etu'];
+    $couper = explode(" ", $nom_et_prenom);
+    $nom = $couper[0];
+    $prenom = $couper[1];
+    var_dump($nom);
+    var_dump($prenom);
+    //Transmet directement le numéro étudiant de l'etu selec dans la session
+    try {
+        $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
+        $reponse2 = $bdd->query('SELECT num_etu FROM etudiant WHERE nom="' . $nom . '"');
+        $donnees2 = $reponse2->fetchColumn();
+        $_SESSION['num_etu'] = $donnees2;
+        $reponse2->closeCursor();
+        //La variable de session n'est pas bien définie
+        $numero = $_SESSION['num_etu'];
+        var_dump($_SESSION['num_etu']);
+    } catch (Exception $e) {
+        die('Erreur : ' . $e->getMessage());
+    }
+    }
+    elseif (isset($_SESSION['num_etu'])) {
+        $numero = $_SESSION['num_etu'];
+    }
+
 ?>
 
+
+
 <p><form method="post" action="###.php" name="UE_ajout_rapide">
-    <!-- Cours enregistrés dans la BDD -->
+    <!-- Cours enregistrés dans la BDD pour un numéro d'étudiant NE MARCHE PAS POUR L'INSTANT -->
     <select name="cursus_pre_remplies" size="6">
         <?php
         //cursus_selec();
         try {
-          $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
-          } catch (Exception $e) {
-          die('Erreur : ' . $e->getMessage());
-          }
-          //On affiche les cursus pour un certain numéro étudiant
-          $reponse = $bdd->query('SELECT * FROM cursus WHERE num_etu="'.$numero.'"');
-          while ($donnees = $reponse->fetch()) {
-          ?>
-          <option> <?php echo $donnees['sigle']; ?></option>
-          <?php
-          }
-          $reponse->closeCursor(); 
+            $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
+
+            //On affiche les cursus pour un certain numéro étudiant
+            $reponse = $bdd->query('SELECT * FROM cursus WHERE num_etu="' . $numero . '"');
+            while ($donnees = $reponse->fetch()) {
+                ?>
+                <option> <?php echo $donnees['sigle']; ?></option>
+                <?php
+            }
+            $reponse->closeCursor();
+        } catch (Exception $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
         ?>
 
 
@@ -100,7 +128,7 @@ $numero = $_SESSION['num_etu'];
 </form></p>
 
 <form method='post' action="../BDD/add_cours.php" hidden id="ajout_manuel">
-    <fieldset >
+    <fieldset>
         <legend>Ajout d'une UE</legend>
 
         <p>
@@ -151,7 +179,6 @@ $numero = $_SESSION['num_etu'];
 <script type="text/javascript">
     //fonction Js permettant supprimer element hidden du form
     function manuellement() {
-        document.getElementById("ad").innerHTML = "<p><h1>Ajout manuel</h1></p>";
         var y = document.getElementById("ajout_manuel");
         y.style.display = "inline";
     }
@@ -195,45 +222,34 @@ function etu_selec() {
     }
 }
 
-//Fonction affichant 
-function cursus_selec() {
-    $numero = $_SESSION['num_etu'];
-
-    if (isset($_POST['mon_etu'])) {
-        $nom = $_POST['mon_etu'];
-        echo($nom);
-        try {
-            $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
-        } catch (Exception $e) {
-            die('Erreur : ' . $e->getMessage());
-        }
-        $reponse = $bdd->query('SELECT * FROM etudiant WHERE nom="' . $nom . '"');
-        //$donnees = $reponse2->fetch();
-        while ($donnees = $reponse->fetch()) {
-            ?>
-            <option> <?php echo $donnees['sigle']; ?></option>
-            <?php
-        }
-        $reponse->closeCursor();
-        //echo($donnees);
-        //echo($_SESSION['num_etu']);
-        //$numero_etudiant = $SESSION['num_etu'];
-        //var_dump($numero_etudiant);
-    } elseif (isset($_SESSION['nom'])) {
-        echo('test');
-        try {
-            $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
-        } catch (Exception $e) {
-            die('Erreur : ' . $e->getMessage());
-        }
-        //On affiche les cursus pour un certain numéro étudiant
-        $reponse = $bdd->query('SELECT * FROM cursus WHERE num_etu="' . $numero . '"');
-        while ($donnees = $reponse->fetch()) {
-            ?>
-            <option> <?php echo $donnees['sigle']; ?></option>
-            <?php
-        }
-        $reponse->closeCursor();
+//N'est pas appellée car ne marche pas 
+function actualise_numetu() {
+    //On définir le num étu dans une var (pour la future requete SQL)
+    if(isset($_POST['mon_etu'])){
+    $nom_et_prenom = $_POST['mon_etu'];
+    $couper = explode(" ", $nom_et_prenom);
+    $nom = $couper[0];
+    $prenom = $couper[1];
+    var_dump($nom);
+    var_dump($prenom);
+    //Transmet directement le numéro étudiant de l'etu selec dans la session
+    try {
+        $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
+        $reponse2 = $bdd->query('SELECT num_etu FROM etudiant WHERE nom="' . $nom . '"');
+        $donnees2 = $reponse2->fetchColumn();
+        $_SESSION['num_etu'] = $donnees2;
+        $reponse2->closeCursor();
+        //La variable de session n'est pas bien définie
+        $numero = $_SESSION['num_etu'];
+        var_dump($_SESSION['num_etu']);
+    } catch (Exception $e) {
+        die('Erreur : ' . $e->getMessage());
     }
+    }
+    /*elseif (isset($_SESSION['num_etu'])) {
+        $numero = $_SESSION['num_etu'];
+    }*/
 }
+
+
 ?>
