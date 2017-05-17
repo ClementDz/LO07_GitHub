@@ -21,10 +21,11 @@ session_start();
                 </div>
             </div>
             <div id="menu">
-                <ul>
+                <ul>                    
                     <li><a href="../Accueil.php">Accueil</a></li>
                     <li><a href="../Cursus/Liste_cursus.php">Futurs cours</a></li>
-                    <li><a href="Liste_etudiants.php">Etudiants</a></li>
+                    <li><a href="Ajout_etu.php">Etudiants</a></li>
+                    <li><a href="Liste_etudiants.php">Associer étu/cursus </a></li>
                     <li><a href="Anciens_cours.php">Mes cursus</a></li>
                     <!-- A ne pas montrer dans la version finale -->
                     <li><a href="../Auteurs_contact.php">Auteurs</a></li>
@@ -67,7 +68,7 @@ session_start();
 //ne marche pas en passant par la fonction
 //actualise_numetu();
 
-    if(isset($_POST['mon_etu'])){
+if (isset($_POST['mon_etu'])) {
     $nom_et_prenom = $_POST['mon_etu'];
     $couper = explode(" ", $nom_et_prenom);
     $nom = $couper[0];
@@ -87,11 +88,9 @@ session_start();
     } catch (Exception $e) {
         die('Erreur : ' . $e->getMessage());
     }
-    }
-    elseif (isset($_SESSION['num_etu'])) {
-        $numero = $_SESSION['num_etu'];
-    }
-
+} elseif (isset($_SESSION['num_etu'])) {
+    $numero = $_SESSION['num_etu'];
+}
 ?>
 
 
@@ -100,7 +99,7 @@ session_start();
     <!-- Cours enregistrés dans la BDD pour un numéro d'étudiant NE MARCHE PAS POUR L'INSTANT -->
     <select name="cursus_pre_remplies" size="6">
         <?php
-        //cursus_selec();
+//cursus_selec();
         try {
             $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
 
@@ -198,8 +197,8 @@ session_start();
 <?php
 
 function etu_selec() {
-    if (isset($_POST['mon_etu'])) {
-        $etudiant = $_POST['mon_etu'];
+    if (isset($_POST['modif_etu'])) {
+        $etudiant = $_POST['modif_etu'];
         print_r('<i>' . $etudiant . '</i>');
         // Lecture session = est elle définie ?
         if (isset($_SESSION)) {
@@ -225,31 +224,29 @@ function etu_selec() {
 //N'est pas appellée car ne marche pas 
 function actualise_numetu() {
     //On définir le num étu dans une var (pour la future requete SQL)
-    if(isset($_POST['mon_etu'])){
-    $nom_et_prenom = $_POST['mon_etu'];
-    $couper = explode(" ", $nom_et_prenom);
-    $nom = $couper[0];
-    $prenom = $couper[1];
-    var_dump($nom);
-    var_dump($prenom);
-    //Transmet directement le numéro étudiant de l'etu selec dans la session
-    try {
-        $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
-        $reponse2 = $bdd->query('SELECT num_etu FROM etudiant WHERE nom="' . $nom . '"');
-        $donnees2 = $reponse2->fetchColumn();
-        $_SESSION['num_etu'] = $donnees2;
-        $reponse2->closeCursor();
-        //La variable de session n'est pas bien définie
-        $numero = $_SESSION['num_etu'];
-        var_dump($_SESSION['num_etu']);
-    } catch (Exception $e) {
-        die('Erreur : ' . $e->getMessage());
+    if (isset($_POST['mon_etu'])) {
+        $nom_et_prenom = $_POST['mon_etu'];
+        $couper = explode(" ", $nom_et_prenom);
+        $nom = $couper[0];
+        $prenom = $couper[1];
+        var_dump($nom);
+        var_dump($prenom);
+        //Transmet directement le numéro étudiant de l'etu selec dans la session
+        try {
+            $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
+            $reponse2 = $bdd->query('SELECT num_etu FROM etudiant WHERE nom="' . $nom . '"');
+            $donnees2 = $reponse2->fetchColumn();
+            $_SESSION['num_etu'] = $donnees2;
+            $reponse2->closeCursor();
+            //La variable de session n'est pas bien définie
+            $numero = $_SESSION['num_etu'];
+            var_dump($_SESSION['num_etu']);
+        } catch (Exception $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
     }
-    }
-    /*elseif (isset($_SESSION['num_etu'])) {
-        $numero = $_SESSION['num_etu'];
-    }*/
+    /* elseif (isset($_SESSION['num_etu'])) {
+      $numero = $_SESSION['num_etu'];
+      } */
 }
-
-
 ?>

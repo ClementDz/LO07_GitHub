@@ -19,9 +19,10 @@
             <div id="menu">
                 <ul>
                     <li><a href="../Accueil.php">Accueil</a></li>
-                    <li><a href="../Cursus/Liste_cursus.php">Cursus</a></li>
-                    <li><a href="Liste_etudiants.php">Etudiants</a></li>
-                    <li><a href="Anciens_cours.php">Anciens cours</a></li>
+                    <li><a href="../Cursus/Liste_cursus.php">Futurs cours</a></li>
+                    <li><a href="Ajout_etu.php">Etudiants</a></li>
+                    <li><a href="Liste_etudiants.php">Associer étu/cursus </a></li>
+                    <li><a href="Anciens_cours.php">Mes cursus</a></li>
                     <!-- A ne pas montrer dans la version finale -->
                     <li><a href="../Auteurs_contact.php">Auteurs</a></li>
                     <li><a href="../Sources.php">Sources</a></li>

@@ -8,7 +8,8 @@
     <body>
         <a href="../Accueil.php">Accueil</a>
         <a href="../Cursus/Liste_cursus.php">Cursus</a>
-        <a href="../Etudiant/Liste_etudiants.php">Etudiants</a>
+        <a href="../Etudiant/Ajout_etu.php">Etudiants</a>
+        <a href="../Etudiant/Liste_etudiants.php">Asocier étu/cours</a>
         <a href="../Etudiant/Anciens_cours.php"> Anciens cours </a>
         <!-- A ne pas montrer dans la version finale -->
         <a href="../Auteurs_contact.php">Auteurs </a>
