@@ -141,20 +141,6 @@ function etu_selec() {
     if (isset($_POST['mon_etu'])) {
         $etudiant = $_POST['mon_etu'];
         print_r('<i>' . $etudiant . '</i>');
-        // Lecture session = est elle définie ?
-        if (isset($_SESSION)) {
-            //ajout d'une var de session
-            $_SESSION['nom'] = $etudiant;
-            try {
-                $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
-            } catch (Exception $e) {
-                die('Erreur : ' . $e->getMessage());
-            }
-            $reponse2 = $bdd->query('SELECT num_etu FROM etudiant');
-            $donnees = $reponse2->fetchColumn();
-            $_SESSION['num_etu'] = $donnees;
-            //$_SESSION['label_cursus'] = 'label_$donnees';
-        }
     }
 }
 ?>
