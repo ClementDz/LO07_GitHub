@@ -1,10 +1,5 @@
 <?php
 
-//include("Connexion_BDD.php");
-//connexion();
-//$sql = "INSERT INTO Base_etu(id,nom,prenom,age) ";
-//$sql .= "VALUES('','".$_POST['nom']."','".$_POST['prenom']."','".$_POST['age']."')";
-
 try {
     $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
 

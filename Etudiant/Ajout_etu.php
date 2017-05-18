@@ -20,6 +20,7 @@
             </div>
             <div id="menu">
                 <ul>
+                    <!-- Notre menu -->
                     <li><a href="../Accueil.php">Accueil</a></li>
                     <li><a href="../Cursus/Liste_cursus.php">Futurs cours</a></li>
                     <li><a href="Ajout_etu.php">Etudiants</a></li>
@@ -43,10 +44,11 @@
                 <label>Liste des étudiants dans la BDD</label><br />
                 <select size="10" name="mon_etu">
                     <?php
-                    //Affiche tous les étudiants de la base
+                    //Affiche tous les étudiants de la base par ordre alphabétique
+                    //EN PLUS,faire une fonction de recherche !!
                     try {
                         $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
-                        $reponse = $bdd->query('SELECT * FROM etudiant');
+                        $reponse = $bdd->query('SELECT * FROM etudiant ORDER BY nom');
                         while ($donnees = $reponse->fetch()) {
                             ?>
                             <option> <?php echo $donnees['nom'] . ' ' . $donnees['prenom']; ?></option>
@@ -62,6 +64,7 @@
             </form> 
             <p>
             <form name="nouv_etu" action="Nouvel_etudiant.php" method="POST">
+                <!-- Nous ouvre la page permettant d'ajouter un étu à la BDD -->
                 <input type='submit' value='Ajouter un etudiant à la BDD'>
             </form>
         </p>

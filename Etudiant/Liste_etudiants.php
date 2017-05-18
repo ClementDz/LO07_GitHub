@@ -42,10 +42,10 @@
                     <label>Liste des étudiants dans la BDD</label><br />
                     <select size="10" name="mon_etu">
                         <?php
-                        //Affiche tous les étudiants de la base
+                        //Affiche tous les étudiants de la base par ordre alphabétique
                         try {
                             $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
-                            $reponse = $bdd->query('SELECT * FROM etudiant');
+                            $reponse = $bdd->query('SELECT * FROM etudiant ORDER BY nom');
                             while ($donnees = $reponse->fetch()) {
                                 ?>
                                 <option> <?php echo $donnees['nom'] . ' ' . $donnees['prenom']; ?></option>

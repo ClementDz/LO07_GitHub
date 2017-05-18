@@ -99,7 +99,6 @@ if (isset($_POST['mon_etu'])) {
     <!-- Cours enregistrés dans la BDD pour un numéro d'étudiant NE MARCHE PAS POUR L'INSTANT -->
     <select name="cursus_pre_remplies" size="6">
         <?php
-//cursus_selec();
         try {
             $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
 
@@ -197,22 +196,22 @@ if (isset($_POST['mon_etu'])) {
 <?php
 
 function etu_selec() {
-    if (isset($_POST['modif_etu'])) {
-        $etudiant = $_POST['modif_etu'];
+    if (isset($_POST['mon_etu'])) {
+        $etudiant = $_POST['mon_etu'];
         print_r('<i>' . $etudiant . '</i>');
         // Lecture session = est elle définie ?
         if (isset($_SESSION)) {
-            //ajout d'une var de session
+            //on récupère son nom dans une var de session
             $_SESSION['nom'] = $etudiant;
             try {
                 $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
             } catch (Exception $e) {
                 die('Erreur : ' . $e->getMessage());
             }
+            //on récupère son num_etu dans une var de session
             $reponse2 = $bdd->query('SELECT num_etu FROM etudiant');
             $donnees = $reponse2->fetchColumn();
             $_SESSION['num_etu'] = $donnees;
-            //$_SESSION['label_cursus'] = 'label_$donnees';
         }
     } elseif (isset($_SESSION['nom'])) {
         print_r('<i>' . $_SESSION['nom'] . '</i>');

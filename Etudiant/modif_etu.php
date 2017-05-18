@@ -47,6 +47,7 @@
                 try {
                     $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
                     $reponse2 = $bdd->query('SELECT num_etu,admi, filiere, email  FROM etudiant WHERE nom="' . $nom . '" AND prenom="' . $prenom . '"');
+                    //On récupère les infos pour ce nom et prénom (ne marchera pas pour les homonymes !)
                     $donnees2 = $reponse2->fetch();
                     //var_dump($donnees2);
                     $numeroetudiant = $donnees2[0];
@@ -54,59 +55,65 @@
                     $filiere = $donnees2[2];
                     $email = $donnees2[3];
                     $reponse2->closeCursor();
-                    //La variable de session n'est pas bien définie
+                    ?>
+                    <form method='POST' action="../BDD/update_etu.php">
+                        <fieldset>
+                            <legend>Données étudiantes</legend>
+                            <i>Veuillez modifier les informations suivantes</i>
+                            <p> <label>Nom</label>
+                                <input type="text" name="nom" id="nom" required value=<?php echo($nom) ?> />            
+                            </p>
+
+                            <p>
+                                <label>Prénom</label>
+                                <input type="text" name="prenom" id="prenom" required value=<?php echo($prenom) ?> />
+                            </p>
+                            <p>
+                                <label>Numéro étudiant</label>
+                                <input type="text" name="num_etu" id="num_etu" required value=<?php echo($numeroetudiant) ?> />
+                            </p>
+                            <p>
+                                <label>Admission</label>
+                                <!-- Faire un if checked,  -->
+                                <input type="radio" name="admi" value="TC" id="admi"required/>TC
+                                <input type="radio" name="admi" value="Branche" id="admi" required>Branche
+
+                            </p>
+                            <p>
+                                <label>Votre filière actuelle</label>
+                                <input type="radio" name="filiere" id="filiere" value="TC" required onclick="affichepas()"/>TC
+                                <input type="radio" name="filiere" id="filiere" value="TCBR" required onclick="affichepas()"/>TCBR
+                                <input type="radio" name="filiere" id="filiere" value="FI" required onclick="affiche();"/>Filière
+                            </p>
+
+                            <div id="ad"> </div>
+                            <div id="ad1"> </div>
+                            <div id="ad2"> </div>
+                            <div id="ad9"> </div>
+                            <div id="ad10"> </div>
+                            <div id="ad5"> </div>
+
+                            <p>
+                                <label>Email</label>
+                                <input type="email" name="email" id="email" required value="<?php echo($email) ?>"/>
+                                <!-- Ajouter validation mail -->
+                            </p>
+
+                            <p> <input type='submit' value="Valider ces modifications"></p>
+                        </fieldset>
+                    </form>
+            
+                    <form name="supp_etu" action="../BDD/delete_etu.php" method="POST">
+                        <!-- Nous ouvre la page permettant d'ajouter un étu à la BDD -->
+                        <input type='submit' value='Supprimer cet étudiant'>
+                    </form>
+                    <?php
                 } catch (Exception $e) {
                     die('Erreur : ' . $e->getMessage());
                 }
             }
             ?>
-            <form method='POST' action="../BDD/update_etu.php">
-                <fieldset>
-                    <legend>Données étudiantes</legend>
-                    <i>Veuillez modifier les informations suivantes</i>
-                    <p> <label>Nom</label>
-                        <input type="text" name="nom" id="nom" required value=<?php echo($nom) ?> />            
-                    </p>
 
-                    <p>
-                        <label>Prénom</label>
-                        <input type="text" name="prenom" id="prenom" required value=<?php echo($prenom) ?> />
-                    </p>
-                    <p>
-                        <label>Numéro étudiant</label>
-                        <input type="text" name="num_etu" id="num_etu" required value=<?php echo($numeroetudiant) ?> />
-                    </p>
-                    <p>
-                        <label>Admission</label>
-                        <!-- Faire un if checked,  -->
-                        <input type="radio" name="admi" value="TC" id="admi"required/>TC
-                        <input type="radio" name="admi" value="Branche" id="admi" required>Branche
-
-                    </p>
-                    <p>
-                        <label>Votre filière actuelle</label>
-                        <input type="radio" name="filiere" id="filiere" value="TC" required onclick="affichepas()"/>TC
-                        <input type="radio" name="filiere" id="filiere" value="TCBR" required onclick="affichepas()"/>TCBR
-                        <input type="radio" name="filiere" id="filiere" value="FI" required onclick="affiche();"/>Filière
-                    </p>
-
-                    <div id="ad"> </div>
-                    <div id="ad1"> </div>
-                    <div id="ad2"> </div>
-                    <div id="ad9"> </div>
-                    <div id="ad10"> </div>
-                    <div id="ad5"> </div>
-
-                    <p>
-                        <label>Email</label>
-                        <input type="email" name="email" id="email" required value="<?php echo($email) ?>"/>
-                        <!-- Ajouter validation mail -->
-                    </p>
-                    
-                    <p> <input type='submit' value="Valider ces modifications">
-                        <input type='button' value='Supprimer cet étudiant'></p>
-                </fieldset>
-            </form>
 
             <script type="text/javascript">
                 function affiche() {
@@ -141,6 +148,8 @@ function etu_selec() {
     if (isset($_POST['mon_etu'])) {
         $etudiant = $_POST['mon_etu'];
         print_r('<i>' . $etudiant . '</i>');
+        //Transmettre le nom de l'étu à supprimer dans une variable de session
+        $_SESSION['nom_etu_a_supp']=$etudiant;
     }
 }
 ?>
