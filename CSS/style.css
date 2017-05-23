@@ -21,7 +21,7 @@ body {
 	font-size: 11.5pt;
 	color: #5C5B5B;
 	line-height: 1.75em;
-	background: #E0DCDC url(images/img01.gif) repeat-x top left;
+	background: #E0DCDC url(../Images/img01.gif) repeat-x top left;
 }
 
 body,input {
@@ -127,7 +127,7 @@ ul h4 {
 #header {
 	height: 75px;
 	position: relative;
-	background: #6E6E6E url(images/img03.jpg) top left no-repeat;
+	background: #6E6E6E url(../Images/img03.jpg) top left no-repeat;
 	padding: 45px;
 	color: #FFFFFF;
 	width: 888px;

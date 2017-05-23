@@ -1,4 +1,5 @@
 <?php
+
 // Récupérer le nom du fichier
 $file = file_get_contents("PRIOR_beatrice.csv");
 $preg = "/[\n,\r,\r\n,;]+/";
@@ -6,7 +7,7 @@ $monfichier = preg_split($preg, $file);
 //var_dump($test);
 $long = count($monfichier);
 //echo $long;
-
+//On se connecte a la base de donnée
 try {
     $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
     for ($c = 0; $c < $long; $c++) {
@@ -24,6 +25,12 @@ try {
             //echo "pas de ligne ID";
         }
     }
+    ?>
+    <script>
+        alert('Fichier bien importé');
+    </script>
+    <?php
+
 //fclose($file);
 } catch (Exception $e) {
     die('Erreur : ' . $e->getMessage());

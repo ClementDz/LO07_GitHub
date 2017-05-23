@@ -18,7 +18,7 @@
             </div>
             <div id="menu">
                 <ul>
-                    <<li><a href="Accueil.php">Accueil</a></li>
+                    <li><a href="Accueil.php">Accueil</a></li>
                     <li><a href="Cursus/Liste_cursus.php">Futurs cours</a></li>
                     <li><a href="Etudiant/Ajout_etu.php"> Etudiants </a></li>
                     <li><a href="Etudiant/Liste_etudiants.php"> Associer étu/cursus</a></li>
@@ -31,8 +31,12 @@
             </div>
             <p><h1>Les créateurs de ce site</h1></p>
             <div id="splash">
-                <img class="nous" src="images/Durnez.jpg" width="100" height="150" alt="Clément Durnez" />
-            </div>        <!-- Insérer des photos + belle mise en page ==> BOOTSTRAP ??-->
+                <img class="nous" src="images/Durnez.jpg" width="100" height="150" title="Clément Durnez" />
+                    <!-- Insérer des photos + belle mise en page ==> BOOTSTRAP ??-->
+            
+            
+                    <img class="img" src="images/dubois.jpg" width="100" height="150" title="Sir Dubois" />
+            </div>
 
         <p><h1>Notre école</h1></p>
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2655.742597559738!2d4.0632969158150285!3d48.269327849954216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47ee99a0cb4a3a57%3A0x42148ce859fa2d02!2sUniversit%C3%A9+de+Technologie+de+Troyes!5e0!3m2!1sfr!2sfr!4v1493472184108" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>

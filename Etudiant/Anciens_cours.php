@@ -93,38 +93,6 @@ if (isset($_POST['mon_etu'])) {
 }
 ?>
 
-
-
-<p><form method="post" action="###.php" name="UE_ajout_rapide">
-    <!-- Cours enregistrés dans la BDD pour un numéro d'étudiant NE MARCHE PAS POUR L'INSTANT -->
-    <select name="cursus_pre_remplies" size="6">
-        <?php
-        try {
-            $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
-
-            //On affiche les cursus pour un certain numéro étudiant
-            $reponse = $bdd->query('SELECT * FROM cursus WHERE num_etu="' . $numero . '"');
-            while ($donnees = $reponse->fetch()) {
-                ?>
-                <option> <?php echo $donnees['sigle']; ?></option>
-                <?php
-            }
-            $reponse->closeCursor();
-        } catch (Exception $e) {
-            die('Erreur : ' . $e->getMessage());
-        }
-        ?>
-
-
-    </select>
-    <!-- Ouvrir page pour la modification des cours -->
-    <p> <input type='submit' value='Modifier / Supprimer ce cours'></p>
-</form></p>
-
-<p><form name="valid_cursus" action="../Cursus/calcul.php" method="post">
-    <p><input type='submit' value='Valider mon cursus'></p>
-</form></p>
-
 <form method='post' action="../BDD/add_cours.php" hidden id="ajout_manuel">
     <fieldset>
         <legend>Ajout d'une UE</legend>
@@ -171,6 +139,43 @@ if (isset($_POST['mon_etu'])) {
         on peut en rentrer une autre -->
         <input type='reset' value='Réinitialiser'>
 </form>
+
+
+<p><form method="post" action="###.php" name="UE_ajout_rapide">
+    <!-- Cours enregistrés dans la BDD pour un numéro d'étudiant NE MARCHE PAS POUR L'INSTANT -->
+    <select name="cursus_pre_remplies" size="6">
+        <?php
+        try {
+            $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
+
+            //On affiche les cursus pour un certain numéro étudiant
+            $reponse = $bdd->query('SELECT * FROM cursus WHERE num_etu="' . $numero . '"');
+            while ($donnees = $reponse->fetch()) {
+                ?>
+                <option> <?php echo $donnees['sigle']; ?></option>
+                <?php
+            }
+            $reponse->closeCursor();
+        } catch (Exception $e) {
+            die('Erreur : ' . $e->getMessage());
+        }
+        ?>
+
+
+    </select>
+    <!-- Ouvrir page pour la modification des cours -->
+    <p> <input type='submit' value='Modifier / Supprimer ce cours'></p>
+</form></p>
+
+<p><form name="valid_cursus" action="../Cursus/calcul.php" method="post">
+    <p><input type='submit' value='Valider mon cursus'></p>
+</form></p>
+
+<p><form name="export_cursus" action="../CSV/export.php" method="post">
+    <p><input type='submit' value='Exporter le cursus au format csv'></p>
+</form></p>
+
+
 
 
 
