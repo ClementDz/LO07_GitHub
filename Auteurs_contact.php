@@ -22,7 +22,7 @@
                     <li><a href="Cursus/Liste_cursus.php">Futurs cours</a></li>
                     <li><a href="Etudiant/Ajout_etu.php"> Etudiants </a></li>
                     <li><a href="Etudiant/Liste_etudiants.php"> Associer étu/cursus</a></li>
-                    <li><a href="Etudiant/Anciens_cours.php">Mes cursus</a></li>
+                    <li><a href="Cursus/cours_enregistres.php">Cours enregistres</a></li>
                     <li><a href="Auteurs_contact.php">Auteurs </a></li>
                     <li><a href="Sources.php">Sources </a></li>
                     <li><a href="Reglement/Les reglements.php">Règlements</a></li>

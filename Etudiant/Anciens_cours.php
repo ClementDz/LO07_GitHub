@@ -26,7 +26,7 @@ session_start();
                     <li><a href="../Cursus/Liste_cursus.php">Futurs cours</a></li>
                     <li><a href="Ajout_etu.php">Etudiants</a></li>
                     <li><a href="Liste_etudiants.php">Associer étu/cursus </a></li>
-                    <li><a href="Anciens_cours.php">Mes cursus</a></li>
+                    <li><a href="../Cursus/cours_enregistres.php">Cours enregistrés</a></li>
                     <!-- A ne pas montrer dans la version finale -->
                     <li><a href="../Auteurs_contact.php">Auteurs</a></li>
                     <li><a href="../Sources.php">Sources</a></li>
@@ -65,9 +65,6 @@ session_start();
 <h3>UE présentes dans mon cursus</h3>
 
 <?php
-//ne marche pas en passant par la fonction
-//actualise_numetu();
-
 if (isset($_POST['mon_etu'])) {
     $nom_et_prenom = $_POST['mon_etu'];
     $couper = explode(" ", $nom_et_prenom);
@@ -93,7 +90,7 @@ if (isset($_POST['mon_etu'])) {
 }
 ?>
 
-<form method='post' action="../BDD/add_cours.php" hidden id="ajout_manuel">
+<form method='post' action="../BDD/add_cours.php" hidden id="ajout_manuel2">
     <fieldset>
         <legend>Ajout d'une UE</legend>
 
@@ -182,12 +179,12 @@ if (isset($_POST['mon_etu'])) {
 <script type="text/javascript">
     //fonction Js permettant supprimer element hidden du form
     function manuellement() {
-        var y = document.getElementById("ajout_manuel");
+        var y = document.getElementById("ajout_manuel2");
         y.style.display = "inline";
     }
     // Cacher l'ajout d'un element manuellement
     function automatiquement() {
-        var y = document.getElementById("ajout_manuel");
+        var y = document.getElementById("ajout_manuel2");
         y.style.display = "hidden";
     }
 </script> 

@@ -2,11 +2,11 @@
 
 // Récupérer le nom du fichier
 $file = file_get_contents("PRIOR_beatrice.csv");
+//On va supprimer les blancs points virgules etc etc etc
 $preg = "/[\n,\r,\r\n,;]+/";
 $monfichier = preg_split($preg, $file);
-//var_dump($test);
 $long = count($monfichier);
-//echo $long;
+
 //On se connecte a la base de donnée
 try {
     $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
@@ -16,10 +16,46 @@ try {
             case "ID" :
                 echo "<b>ligne ID</b>";
                 //Enregistrer les infos étudiantes dans la BDD
+                $req = $bdd->prepare('INSERT INTO etudiant(nom, prenom, num_etu, admi, filiere, email) VALUES(:nom, :prenom, :num_etu, :admi, :filiere, :email)');
+                $req->execute(array(
+                    'num_etu' => $monfichier[$c + 1],
+                    'nom' => $monfichier[$c + 3],
+                    'prenom' => $monfichier[$c + 5],
+                    'admi' => $monfichier[$c + 7],
+                    'filiere' => $monfichier[$c + 9],
+                    'email' => ""
+                ));
                 break;
             case "EL":
                 echo"<b>ligne element</b>";
                 //Enregistrer les informations sur les éléments associé à l'étudiant
+                $req = $bdd->prepare('INSERT INTO cursus_etudiant(num_etu, affectation) VALUES(:num_etu, :affectation)');
+                $req->execute(array(
+                    // A MODIFIER EN FONCTION
+                    'num_etu' => $monfichier[$c + 1],
+                    'affectation' => $monfichier[$c + 3]
+                ));
+
+                $req = $bdd->prepare('INSERT INTO cursus(num_etu, affectation) VALUES(:num_etu, :affectation)');
+                $req->execute(array(
+                    // A MODIFIER EN FONCTION
+                    'num_etu' => $monfichier[$c + 1],
+                    'affectation' => $monfichier[$c + 3]
+                ));
+
+                $req = $bdd->prepare('INSERT INTO semestre_element_formation(num_etu, affectation) VALUES(:num_etu, :affectation)');
+                $req->execute(array(
+                    // A MODIFIER EN FONCTION
+                    'num_etu' => $monfichier[$c + 1],
+                    'affectation' => $monfichier[$c + 3]
+                ));
+
+                $req = $bdd->prepare('INSERT INTO element_formation(num_etu, affectation) VALUES(:num_etu, :affectation)');
+                $req->execute(array(
+                    // A MODIFIER EN FONCTION
+                    'num_etu' => $monfichier[$c + 1],
+                    'affectation' => $monfichier[$c + 3]
+                ));
                 break;
             default :
             //echo "pas de ligne ID";

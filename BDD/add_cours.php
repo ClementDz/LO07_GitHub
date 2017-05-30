@@ -10,13 +10,12 @@ try {
     echo'test';
 
 // Insertion du message à l'aide d'une requête préparée
-$req = $bdd->prepare('INSERT INTO element_formation(sigle, affectation, categorie, utt, profil) VALUES(:sigle, :affectation, :categorie, :utt, :profil)');
+$req = $bdd->prepare('INSERT INTO element_formation(sigle, affectation, categorie, utt) VALUES(:sigle, :affectation, :categorie, :utt)');
 $req->execute(array(
     'sigle' => $_POST['sigle'],
     'affectation' => $_POST['affectation'],
     'categorie' => $_POST['categorie'],
-    'utt' => $_POST['utt'],
-    'profil' => $_POST['profil']
+    'utt' => $_POST['utt']
 ));
 
 
@@ -25,9 +24,9 @@ $req->execute(array(
     die('Erreur : ' . $e->getMessage());
 }
 
+// Redirection du visiteur vers la page nommée anciens_cours
+//header('Location: ../Etudiant/Anciens_cours.php');
 
-
-// Redirection du visiteur vers la page du minichat
-header('Location: ../Etudiant/Anciens_cours.php');
-//mysql_query($sql) or die(mysql_error());
+//Redirection vers la page précédente (marchera dans le cas ou on veut ajouter un cours "à l'arrache / proprement)
+header ("Location: $_SERVER[HTTP_REFERER]" );
 ?>
