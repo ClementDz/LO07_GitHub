@@ -34,7 +34,7 @@
             
         <p><h1>Voici la liste des cours enregistrés dans notre base</h1></p>
     <i>Si l'UE souhaitée n'est pas dans la liste, veuillez l'ajouter manuellement</i>
-    <p><form method="post" action="Ajout_cours.php" name="UE_ajout_rapide">
+    <p><form method="post" action="../BDD/delete_cours_EF.php" name="UE_ajout_rapide">
         <!-- Cours enregistrés dans la BDD -->
         <select name="ue_pre_remplies" size="10">
             <?php
@@ -55,9 +55,10 @@
         </select>
         <p><input type='button' value='Ajouter une UE à la BDD' id="manuel" onclick="manuellement();"></p>
         <!-- Va nous afficher, retirer l'attribut hidden des formulaires  -->
+        <p><input type="submit" value="Supprimer cette UE"></p>
     </form></p>
 
-
+    
 <form method='post' action="../BDD/add_cours.php" hidden id="ajout_manuel2">
     <fieldset>
         <legend>Ajout d'une UE</legend>

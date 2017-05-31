@@ -147,6 +147,9 @@ if (isset($_POST['mon_etu'])) {
 
             //On affiche les cursus pour un certain numéro étudiant
             $reponse = $bdd->query('SELECT * FROM cursus WHERE num_etu="' . $numero . '"');
+            //$sem_id = $reponse->fetchColumn();
+            //echo $sem_id;
+            //$reponse2 = $bdd->query('SELECT * FROM semestre_element_formation WHERE sem_id="' . $sem_id . '"');
             while ($donnees = $reponse->fetch()) {
                 ?>
                 <option> <?php echo $donnees['sigle']; ?></option>
