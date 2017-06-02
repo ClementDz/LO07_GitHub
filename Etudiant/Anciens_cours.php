@@ -72,14 +72,14 @@ if (isset($_POST['mon_etu'])) {
     $prenom = $couper[1];
     var_dump($nom);
     var_dump($prenom);
-    //Transmet directement le numéro étudiant de l'etu selec dans la session
+//Transmet directement le numéro étudiant de l'etu selec dans la session
     try {
         $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
         $reponse2 = $bdd->query('SELECT num_etu FROM etudiant WHERE nom="' . $nom . '"');
         $donnees2 = $reponse2->fetchColumn();
         $_SESSION['num_etu'] = $donnees2;
         $reponse2->closeCursor();
-        //La variable de session n'est pas bien définie
+//La variable de session n'est pas bien définie
         $numero = $_SESSION['num_etu'];
         var_dump($_SESSION['num_etu']);
     } catch (Exception $e) {
@@ -146,16 +146,21 @@ if (isset($_POST['mon_etu'])) {
             $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
 
             //On affiche les cursus pour un certain numéro étudiant
-            $reponse = $bdd->query('SELECT * FROM cursus WHERE num_etu="' . $numero . '"');
+            $reponse = $bdd->query('SELECT * FROM element_formation');
+
+            //$reponse = $bdd->query('SELECT sem_id FROM cursus, semestre, etudiant WHERE cursus.num_etu="' . $numero . '" AND cursus.label_cursus = semestre.label_cursus');
+            //$reponse2=$bdd->query('SELECT * FROM semestre, semestre-element_formation WHERE semestre.sem_id =semestre-element_formation.sem_id');
             //$sem_id = $reponse->fetchColumn();
             //echo $sem_id;
             //$reponse2 = $bdd->query('SELECT * FROM semestre_element_formation WHERE sem_id="' . $sem_id . '"');
+            
             while ($donnees = $reponse->fetch()) {
                 ?>
-                <option> <?php echo $donnees['sigle']; ?></option>
+                <option> <?php echo($donnees['sigle']); ?></option>
                 <?php
             }
             $reponse->closeCursor();
+            //$reponse2->closeCursor();
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }
@@ -163,6 +168,7 @@ if (isset($_POST['mon_etu'])) {
 
 
     </select>
+    <?php recupere_infos_etu(); ?>
     <!-- Ouvrir page pour la modification des cours -->
     <p> <input type='submit' value='Modifier / Supprimer ce cours'></p>
 </form></p>
@@ -204,16 +210,16 @@ function etu_selec() {
     if (isset($_POST['mon_etu'])) {
         $etudiant = $_POST['mon_etu'];
         print_r('<i>' . $etudiant . '</i>');
-        // Lecture session = est elle définie ?
+// Lecture session = est elle définie ?
         if (isset($_SESSION)) {
-            //on récupère son nom dans une var de session
+//on récupère son nom dans une var de session
             $_SESSION['nom'] = $etudiant;
             try {
                 $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
             } catch (Exception $e) {
                 die('Erreur : ' . $e->getMessage());
             }
-            //on récupère son num_etu dans une var de session
+//on récupère son num_etu dans une var de session
             $reponse2 = $bdd->query('SELECT num_etu FROM etudiant');
             $donnees = $reponse2->fetchColumn();
             $_SESSION['num_etu'] = $donnees;
@@ -225,9 +231,25 @@ function etu_selec() {
     }
 }
 
+// Fonction permettant de récupérer les infos sur l'admi + filiere
+function recupere_infos_etu() {
+    try {
+        $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
+        if (isset($_SESSION['num_etu'])) {
+            $reponse2 = $bdd->query('SELECT admi, filiere FROM etudiant WHERE num_etu="' . $_SESSION['num_etu'] . '"');
+            $donnees2 = $reponse2->fetch();
+            $_SESSION['admi'] = $donnees2['admi'];
+            $_SESSION['filiere'] = $donnees2['filiere'];
+            $reponse2->closeCursor();
+        }
+    } catch (Exception $e) {
+        die('Erreur : ' . $e->getMessage());
+    }
+}
+
 //N'est pas appellée car ne marche pas 
 function actualise_numetu() {
-    //On définir le num étu dans une var (pour la future requete SQL)
+//On définir le num étu dans une var (pour la future requete SQL)
     if (isset($_POST['mon_etu'])) {
         $nom_et_prenom = $_POST['mon_etu'];
         $couper = explode(" ", $nom_et_prenom);
@@ -235,14 +257,14 @@ function actualise_numetu() {
         $prenom = $couper[1];
         var_dump($nom);
         var_dump($prenom);
-        //Transmet directement le numéro étudiant de l'etu selec dans la session
+//Transmet directement le numéro étudiant de l'etu selec dans la session
         try {
             $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
             $reponse2 = $bdd->query('SELECT num_etu FROM etudiant WHERE nom="' . $nom . '"');
             $donnees2 = $reponse2->fetchColumn();
             $_SESSION['num_etu'] = $donnees2;
             $reponse2->closeCursor();
-            //La variable de session n'est pas bien définie
+//La variable de session n'est pas bien définie
             $numero = $_SESSION['num_etu'];
             var_dump($_SESSION['num_etu']);
         } catch (Exception $e) {

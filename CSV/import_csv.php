@@ -35,7 +35,7 @@ try {
                 $req = $bdd->prepare('INSERT INTO semestre(sem_id, sem_seq, sem_label) VALUES(:sem_id, :sem_seq, :sem_label)');
                 $req->execute(array(
                     //A voir pour le sem_id !!!
-                    'sem_id' => 2,
+                    'sem_id' => '',
                     'sem_seq' => $monfichier[$c + 1],
                     'sem_label' => $monfichier[$c + 2]
                 ));
@@ -43,15 +43,15 @@ try {
                 $req = $bdd->prepare('INSERT INTO cursus(label_cursus, sem_id, num_etu) VALUES(:label_cursus, :sem_id, :num_etu)');
                 $req->execute(array(
                     //A voir pour sem_id et label_cursus !!!
-                    'label_cursus' => 2,
-                    'sem_id' => 2,
+                    'label_cursus' => '',
+                    'sem_id' => '',
                     'num_etu' => $numero_etudiant
                 ));
 
-                $req = $bdd->prepare('INSERT INTO semestre_element_formation(sem_id, sigle, resultat, credit, profil) VALUES(:sem_id, :sigle, :resultat, :credit, :profil)');
+                $req = $bdd->prepare('INSERT INTO semestre-element_formation(sem_id, sigle, resultat, credit, profil) VALUES(:sem_id, :sigle, :resultat, :credit, :profil)');
                 $req->execute(array(
                     // A voir pour sem_id
-                    'sem_id' => 2,
+                    'sem_id' => '',
                     'sigle' => $monfichier[$c + 3],
                     'resultat' => $monfichier[$c + 9],
                     'credit' => $monfichier[$c + 8],
@@ -82,38 +82,5 @@ try {
     die('Erreur : ' . $e->getMessage());
 }
 
-/*
-  try {
-  $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
-  $row = 1;
-  if (($handle = fopen("PRIOR_beatrice.csv", "r")) !== FALSE) {
-  //$handle=preg_split($preg,$handle);
-  while (($data = fgetcsv($handle, 82, ";")) !== FALSE) {
-  $num = count($data);
-  echo "<p> $num champs à la ligne $row: <br /></p>\n";
-  $row++;
-  for ($c = 0; $c < $num; $c++) {
-  //echo $data[$c] . "<br />\n";
-
-  }
-  }
-  fclose($handle);
-  }
-  /* Insertion du message à l'aide d'une requête préparée
-  $req = $bdd->prepare('INSERT INTO element_formation(sigle, affectation, categorie, utt, profil) VALUES(:sigle, :affectation, :categorie, :utt, :profil)');
-  $req->execute(array(
-  'sigle' => $_POST['sigle'],
-  'affectation' => $_POST['affectation'],
-  'categorie' => $_POST['categorie'],
-  'utt' => $_POST['utt'],
-  'profil' => $_POST['profil']
-  ));
-  } catch (Exception $e) {
-  die('Erreur : ' . $e->getMessage());
-  } */
-// faire une fonction Js alert() pour dire que ca a été importé avec succcès
-
-/* LOAD DATA INFILE IGNORE 'data.txt' INTO TABLE tbl_name
-  FIELDS TERMINATED BY ',' ENCLOSED BY '"'
-  LINES TERMINATED BY '\n'; */
+header('Location: ../Etudiant/Anciens_cours.php');
 ?>
