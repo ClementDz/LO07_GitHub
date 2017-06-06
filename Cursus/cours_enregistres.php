@@ -53,7 +53,7 @@
                 $reponse->closeCursor();
                 ?>
             </select>
-            <p><input type='button' value='Ajouter une UE à la BDD' id="manuel" onclick="manuellement();"></p>
+            <p><input class="button" type='button' value='Ajouter une UE à la BDD' id="manuel" onclick="manuellement();"></p>
             <!-- Va nous afficher, retirer l'attribut hidden des formulaires  -->
             <p><input type="submit" value="Supprimer cette UE"></p>
         </form></p>

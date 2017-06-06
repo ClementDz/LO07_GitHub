@@ -33,14 +33,12 @@
                 <div>Explications sur le fonctionnement du site ci-dessous</div>
             </div>
 
-            <p>
-            <div id="splash">
-                <img class="pic" src="images/utt.png" width="870" height="230" alt="" />
-            </div>
-        </p>
 
-        <p>Vous pouvez ajouter vos cursus, c'est à a dire vos anciens cours à partir de l'onglet étudiant et calculer vos crédits manquants.
-        </p>
+            <div id="splash">
+                <!--<img src="images/utt.png" width="870" height="230" alt="" />-->
+            </div>
+
+            <p>Vous pouvez ajouter vos cursus, c'est à a dire vos anciens cours à partir de l'onglet étudiant et calculer vos crédits manquants.</p>
         <p>Par ailleurs, vous pouvez aller dans l'onglet Futurs cours et choisir vos cours pour le prochain semestre et ainsi voir ce qu'il vous manquera après ce semestre.</p>
 </body>
 </html>

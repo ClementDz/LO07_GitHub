@@ -38,7 +38,7 @@ $lignes[] = array("FI", $_SESSION['filiere'], "", "", "", "", "", "", "", "");
 $lignes[] = array("==", "s_seq", "s_label", "sigle", "categorie", "affectation", "utt", "profil", "credit", "resultat");
 
 //Données des cours suivi par l'étudiant
-for ($i = 1; $i <= $nb_lignes; $i++) {
+for ($i = 1; $i <$nb_lignes; $i++) {
     try {
         $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
         // ATTENTION !!!! A MODIFIER POUR QUE CE SOIT BIEN POUR LE CURSUS

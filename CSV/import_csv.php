@@ -28,30 +28,27 @@ try {
                 ));
                 $numero_etudiant = $monfichier[$c + 1];
                 break;
+            
             case "EL":
                 echo"<b>ligne element</b>";
                 //Enregistrer les informations sur les éléments associé à l'étudiant
                 
-                $req = $bdd->prepare('INSERT INTO semestre(sem_id, sem_seq, sem_label) VALUES(:sem_id, :sem_seq, :sem_label)');
+                $req = $bdd->prepare('INSERT INTO semestre(sem_seq, sem_label, label_cursus) VALUES(:sem_seq, :sem_label, :label_cursus)');
                 $req->execute(array(
-                    //A voir pour le sem_id !!!
-                    'sem_id' => '',
                     'sem_seq' => $monfichier[$c + 1],
-                    'sem_label' => $monfichier[$c + 2]
+                    'sem_label' => $monfichier[$c + 2],
+                    'label_cursus' => 2
                 ));
 
-                $req = $bdd->prepare('INSERT INTO cursus(label_cursus, sem_id, num_etu) VALUES(:label_cursus, :sem_id, :num_etu)');
+                $req = $bdd->prepare('INSERT INTO cursus(label_cursus, num_etu) VALUES(:label_cursus, :num_etu)');
                 $req->execute(array(
-                    //A voir pour sem_id et label_cursus !!!
-                    'label_cursus' => '',
-                    'sem_id' => '',
+                    //Label cursus a faire +1 du dernier
+                    'label_cursus' => 2,
                     'num_etu' => $numero_etudiant
                 ));
 
-                $req = $bdd->prepare('INSERT INTO semestre-element_formation(sem_id, sigle, resultat, credit, profil) VALUES(:sem_id, :sigle, :resultat, :credit, :profil)');
+                $req = $bdd->prepare('INSERT INTO semestre-element_formation(sigle, resultat, credit, profil) VALUES(:sigle, :resultat, :credit, :profil)');
                 $req->execute(array(
-                    // A voir pour sem_id
-                    'sem_id' => '',
                     'sigle' => $monfichier[$c + 3],
                     'resultat' => $monfichier[$c + 9],
                     'credit' => $monfichier[$c + 8],
@@ -60,7 +57,7 @@ try {
 
                 $req = $bdd->prepare('INSERT INTO element_formation(sigle, affectation, categorie, utt) VALUES(:sigle, :affectation, :categorie, :utt)');
                 $req->execute(array(
-                    // A MODIFIER EN FONCTION
+                    
                     'sigle' => $monfichier[$c + 3],
                     'affectation' => $monfichier[$c + 5],
                     'categorie' => $monfichier[$c + 4],
@@ -82,5 +79,5 @@ try {
     die('Erreur : ' . $e->getMessage());
 }
 
-header('Location: ../Etudiant/Anciens_cours.php');
+//header('Location: ../Etudiant/Anciens_cours.php');
 ?>
