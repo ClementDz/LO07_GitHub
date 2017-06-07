@@ -42,7 +42,7 @@
             <form name="nouv_curs" action="Nouveau_cursus.php" method="POST">
                 <p> <input type='submit' value='Ajouter un cursus'></p>
             </form>
-
+    </div>
     </body>
 </html>
 

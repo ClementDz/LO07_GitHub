@@ -100,19 +100,19 @@ ul h4 {
 }
 
 #content {
-	width: 665px;
+	width: auto;
 	float: left;
 	padding: 0;
 }
 
 #content-box1 {
-	width: 320px;
+	width: auto;
 	float: left;
 }
 
 #content-box2 {
 	margin: 0 0 0 345px;
-	width: 320px;
+	width: auto;
 }
 
 #footer {
@@ -131,7 +131,7 @@ ul h4 {
 	background: #6E6E6E url(../Images/img03.jpg) top left no-repeat;
 	padding: 45px;
 	color: #FFFFFF;
-	width: 888px;
+	width: auto;
 	border: solid 1px #7E7E7E;
 	border-top-left-radius: 5px;
 	border-top-right-radius: 5px;
@@ -179,7 +179,7 @@ ul h4 {
 	margin: 0 0 0 0;
 	height: 60px;
 	line-height: 60px;
-	width: 890px;
+	width: auto;
 	border-top: solid 1px #5AD7D7;
 	text-shadow: 0 1px 1px #007D7D;
 }
@@ -204,10 +204,14 @@ ul h4 {
 	padding-left: 0;
 }
 
+.menu:hover {
+    opacity: 0.7;
+}
+
 #page {
 	padding: 45px 45px 15px 45px;
 	position: relative;
-	width: 890px;
+	width: auto;
 	margin: 0;
 }
 
@@ -240,7 +244,7 @@ ul h4 {
 	margin: 0;
 	background: #6E6E6E url(images/img03.jpg) top left no-repeat;
 	border: solid 1px #7E7E7E;
-	width: 888px;
+	width: auto;
 	padding: 45px 45px 0 45px;
 	color: #DCDCDC;
 	border-bottom-left-radius: 5px;
@@ -270,12 +274,12 @@ ul h4 {
 }
 
 #page-bottom-content {
-	width: 665px;
+	width: auto;
 	float: left;
 }
 
 #page-bottom-sidebar {
-	width: 200px;
+	width: auto;
 	margin: 0 0 0 690px;
 }
 
@@ -293,7 +297,7 @@ ul h4 {
 }
 
 #sidebar {
-	width: 200px;
+	width: auto;
 	padding: 0;
 	margin: 0 0 0 690px;
 }
@@ -303,7 +307,7 @@ ul h4 {
 	height: 250px;
 	position: relative;
 	padding: 45px 45px 10px 45px;
-	width: 890px;
+	width: auto;
 }
 
 #splash .pic {
@@ -312,7 +316,7 @@ ul h4 {
 
 #wrapper {
 	position: relative;
-	width: 980px;
+	width: auto;
 	margin: 75px auto 0 auto;
 	background: #FFFFFF;
 }
@@ -335,4 +339,8 @@ ul h4 {
 .fa-linkedin {
   background: #007bb5;
   color: white;
+}
+
+.floating-box {
+    display: inline-block;
 }

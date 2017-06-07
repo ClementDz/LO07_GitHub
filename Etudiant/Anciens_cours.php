@@ -75,8 +75,8 @@ if (isset($_POST['mon_etu'])) {
     $couper = explode(" ", $nom_et_prenom);
     $nom = $couper[0];
     $prenom = $couper[1];
-    var_dump($nom);
-    var_dump($prenom);
+    //var_dump($nom);
+    //var_dump($prenom);
 //Transmet directement le numéro étudiant de l'etu selec dans la session
     try {
         $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
@@ -86,7 +86,7 @@ if (isset($_POST['mon_etu'])) {
         $reponse2->closeCursor();
 //La variable de session n'est pas bien définie
         $numero = $_SESSION['num_etu'];
-        var_dump($_SESSION['num_etu']);
+        //var_dump($_SESSION['num_etu']);
     } catch (Exception $e) {
         die('Erreur : ' . $e->getMessage());
     }
