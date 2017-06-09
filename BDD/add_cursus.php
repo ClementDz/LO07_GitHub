@@ -12,12 +12,13 @@ try {
         'num_etu' => $_SESSION['num_etu']
     ));
 
-    $req = $bdd->prepare('INSERT INTO semestre(sem_seq, sem_label, label_cursus) VALUES(:sem_seq, :sem_label, :label_cursus)');
+    $req = $bdd->prepare('INSERT INTO semestre(sem_id, sem_seq, sem_label, label_cursus) VALUES(:sem_id, :sem_seq, :sem_label, :label_cursus)');
     $req->execute(array(
         //Récupère via le formulaire précédent
         'sem_seq' => $_POST['sem_seq'],
         'sem_label' => $_POST['sem_label'],
-        'label_cursus' => 3
+        'label_cursus' => 3,
+        'sem_id' => 3
     ));
     
     $req = $bdd->prepare('INSERT INTO semestre_element_formation(sem_id, sigle, resultat, credit, profil) VALUES(:sem_id, :sigle, :resultat, :credit, :profil)');
@@ -33,10 +34,14 @@ try {
     die('Erreur : ' . $e->getMessage());
 }
 
-
+var_dump($_SESSION['num_etu']);
+var_dump($_POST['sem_seq']);
+var_dump($_POST['resultat']);
+var_dump($_POST['sem_seq']);
+var_dump($_POST['credit']);
 
 
 // Redirection du visiteur vers la page du minichat
-header('Location: ../Etudiant/Anciens_cours.php');
+//header('Location: ../Etudiant/Anciens_cours.php');
 //mysql_query($sql) or die(mysql_error());
 ?>

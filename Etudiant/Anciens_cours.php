@@ -70,7 +70,7 @@ session_start();
 <?php
 //Recupérer le numéro étudiant sélectionné
 if (isset($_POST['mon_etu'])) {
-    // Via l'ancein formulaire
+    // Via l'anc formulaire
     $nom_et_prenom = $_POST['mon_etu'];
     $couper = explode(" ", $nom_et_prenom);
     $nom = $couper[0];

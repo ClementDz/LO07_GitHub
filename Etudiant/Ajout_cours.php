@@ -114,7 +114,7 @@
                         $donnees = $reponse->fetchColumn(1);
                         $_SESSION['affectation'] = $donnees;
 
-                        var_dump($_SESSION['sigle'] = $cours);
+                        //var_dump($_SESSION['sigle'] = $cours);
                     }
                 } else
                     echo'Erreur, veuillez resélectionner un cours';
