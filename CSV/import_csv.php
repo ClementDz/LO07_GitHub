@@ -47,7 +47,7 @@ try {
                     'num_etu' => $numero_etudiant
                 ));
 
-                $req = $bdd->prepare('INSERT INTO semestre-element_formation(sigle, resultat, credit, profil) VALUES(:sigle, :resultat, :credit, :profil)');
+                $req = $bdd->prepare('INSERT INTO semestre_element_formation(sigle, resultat, credit, profil) VALUES(:sigle, :resultat, :credit, :profil)');
                 $req->execute(array(
                     'sigle' => $monfichier[$c + 3],
                     'resultat' => $monfichier[$c + 9],

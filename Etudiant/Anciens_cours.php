@@ -153,9 +153,9 @@ if (isset($_POST['mon_etu'])) {
             $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
 
             //On affiche les cursus pour un certain numéro étudiant
-            $reponse = $bdd->query('SELECT `semestre-element_formation`.sigle 
-FROM `semestre-element_formation` 
-WHERE `semestre-element_formation`.`sem_id`IN
+            $reponse = $bdd->query('SELECT `semestre_element_formation`.sigle 
+FROM `semestre_element_formation` 
+WHERE `semestre_element_formation`.`sem_id`IN
 ( SELECT DISTINCT `semestre`.sem_id FROM `cursus`, `semestre`, `etudiant`
 WHERE `semestre`.label_cursus = `cursus`.label_cursus AND `cursus`.num_etu = `etudiant`.num_etu AND `etudiant`.num_etu = "'.$numero.'")
 ');

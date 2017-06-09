@@ -89,11 +89,11 @@ function calcul_un_para($categorie, $affectation, $total) {
         $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
         //On récupère les cursus pour un certain numéro étudiant
         $reponse = $bdd->query("SELECT COALESCE(SUM(credit),0) 
-FROM `semestre-element_formation`, `element_formation` 
-WHERE `semestre-element_formation`.`sigle` = `element_formation`.`sigle`
+FROM `semestre_element_formation`, `element_formation` 
+WHERE `semestre_element_formation`.`sigle` = `element_formation`.`sigle`
 AND `element_formation`.`categorie` = '$categorie' 
 AND `element_formation`.`affectation` = '$affectation'
-AND `semestre-element_formation`.`sem_id`IN (SELECT DISTINCT `semestre`.sem_id FROM `cursus`, `semestre`, `etudiant` WHERE `semestre`.label_cursus = `cursus`.label_cursus AND `cursus`.num_etu = `etudiant`.num_etu
+AND `semestre_element_formation`.`sem_id`IN (SELECT DISTINCT `semestre`.sem_id FROM `cursus`, `semestre`, `etudiant` WHERE `semestre`.label_cursus = `cursus`.label_cursus AND `cursus`.num_etu = `etudiant`.num_etu
 AND `etudiant`.num_etu = " . $_SESSION['num_etu'] . ")");
         //var_dump($reponse);
         //echo"test1";
@@ -120,11 +120,11 @@ function calcul_deux_para($categorie1, $categorie2, $affectation, $total) {
         $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
         //On récupère les cursus pour un certain numéro étudiant
         $reponse = $bdd->query("SELECT COALESCE(SUM(credit),0) 
-FROM `semestre-element_formation`, `element_formation` 
-WHERE `semestre-element_formation`.`sigle` = `element_formation`.`sigle`
+FROM `semestre_element_formation`, `element_formation` 
+WHERE `semestre_element_formation`.`sigle` = `element_formation`.`sigle`
 AND(`element_formation`.`categorie` = '$categorie1' OR `element_formation`.`categorie` = '$categorie2') 
 AND `element_formation`.`affectation` = '$affectation'
-AND `semestre-element_formation`.`sem_id`IN (SELECT DISTINCT `semestre`.sem_id FROM `cursus`, `semestre`, `etudiant` WHERE `semestre`.label_cursus = `cursus`.label_cursus AND `cursus`.num_etu = `etudiant`.num_etu
+AND `semestre_element_formation`.`sem_id`IN (SELECT DISTINCT `semestre`.sem_id FROM `cursus`, `semestre`, `etudiant` WHERE `semestre`.label_cursus = `cursus`.label_cursus AND `cursus`.num_etu = `etudiant`.num_etu
 AND `etudiant`.num_etu = " . $_SESSION['num_etu'] . ")");
         while ($somme = $reponse->fetch()) {
             $restant = $total - $somme[0];
@@ -146,11 +146,11 @@ function calcul_CS_TM_BR() {
         $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
         //On récupère les cursus pour un certain numéro étudiant
         $reponse = $bdd->query("SELECT COALESCE(SUM(credit),0) 
-FROM `semestre-element_formation`, `element_formation` 
-WHERE `semestre-element_formation`.`sigle` = `element_formation`.`sigle`
+FROM `semestre_element_formation`, `element_formation` 
+WHERE `semestre_element_formation`.`sigle` = `element_formation`.`sigle`
 AND(`element_formation`.`categorie` = 'CS' OR `element_formation`.`categorie` = 'TM') 
 AND `element_formation`.`affectation` = 'BR'
-AND `semestre-element_formation`.`sem_id`IN (SELECT DISTINCT `semestre`.sem_id FROM `cursus`, `semestre`, `etudiant` WHERE `semestre`.label_cursus = `cursus`.label_cursus AND `cursus`.num_etu = `etudiant`.num_etu
+AND `semestre_element_formation`.`sem_id`IN (SELECT DISTINCT `semestre`.sem_id FROM `cursus`, `semestre`, `etudiant` WHERE `semestre`.label_cursus = `cursus`.label_cursus AND `cursus`.num_etu = `etudiant`.num_etu
 AND `etudiant`.num_etu = " . $_SESSION['num_etu'] . ")");
         while ($somme = $reponse->fetch()) {
 
@@ -167,9 +167,9 @@ function calcul_total() {
         $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
         //On récupère les cursus pour un certain numéro étudiant
         $reponse = $bdd->query("SELECT COALESCE(SUM(credit),0) 
-FROM `semestre-element_formation`, `element_formation` 
-WHERE `semestre-element_formation`.`sigle` = `element_formation`.`sigle`
-AND `semestre-element_formation`.`sem_id`IN (SELECT DISTINCT `semestre`.sem_id FROM `cursus`, `semestre`, `etudiant` WHERE `semestre`.label_cursus = `cursus`.label_cursus AND `cursus`.num_etu = `etudiant`.num_etu
+FROM `semestre_element_formation`, `element_formation` 
+WHERE `semestre_element_formation`.`sigle` = `element_formation`.`sigle`
+AND `semestre_element_formation`.`sem_id`IN (SELECT DISTINCT `semestre`.sem_id FROM `cursus`, `semestre`, `etudiant` WHERE `semestre`.label_cursus = `cursus`.label_cursus AND `cursus`.num_etu = `etudiant`.num_etu
 AND `etudiant`.num_etu = " . $_SESSION['num_etu'] . ")");
         while ($somme = $reponse->fetch()) {
 

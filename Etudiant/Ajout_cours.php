@@ -70,6 +70,13 @@
                 <input type='radio' name="sem_seq" value="6" required/>6
 
             </p>
+
+            <p>
+                <label>L'UE appartient-elle au profil de votre branche/filière?</label>
+                <input type='radio' name="profil" value="Y" required/>Oui
+                <input type='radio' name="profil" value="N" required/>Non
+            </p>
+
             <p>
                 <label>Label du semestre </label>
                 <input type="text" name="sem_label" required placeholder="ex : TC04, ISI2..."/>
@@ -87,29 +94,29 @@
             </html>
 
             <?php
-            function cours_selec(){
+
+            function cours_selec() {
                 if (isset($_POST['ue_pre_remplies'])) {
-                $cours = $_POST['ue_pre_remplies'];
-                print_r('<i>' . $cours . '</i>');
+                    $cours = $_POST['ue_pre_remplies'];
+                    print_r('<i>' . $cours . '</i>');
 
                     if (isset($_SESSION)) {
-                    //connexion
-                            try {
+                        //connexion
+                        try {
                             $bdd = new PDO('mysql:host=localhost;dbname=bdd;charset=utf8', 'root', '');
-                            } catch (Exception $e) {
+                        } catch (Exception $e) {
                             die('Erreur : ' . $e->getMessage());
-                            }
-                    //Récupérer les données des        
-                    $reponse = $bdd->query('SELECT sigle, affectation FROM element_formation WHERE sigle="'.$cours.'"');
-                    //$reponse->execute();
-                    //On enregistre en les donneés dans les var de sessions pour les enregistrer plus tard dans la BDD
-                    $donnees = $reponse->fetchColumn(1);
-                    $_SESSION['affectation'] = $donnees;
-                    
-                    var_dump($_SESSION['sigle'] = $cours);
-                    
+                        }
+                        //Récupérer les données des        
+                        $reponse = $bdd->query('SELECT sigle, affectation FROM element_formation WHERE sigle="' . $cours . '"');
+                        //$reponse->execute();
+                        //On enregistre en les donneés dans les var de sessions pour les enregistrer plus tard dans la BDD
+                        $donnees = $reponse->fetchColumn(1);
+                        $_SESSION['affectation'] = $donnees;
+
+                        var_dump($_SESSION['sigle'] = $cours);
                     }
-            } else
-            echo'Erreur, veuillez resélectionner un cours';
+                } else
+                    echo'Erreur, veuillez resélectionner un cours';
             }
             ?>
