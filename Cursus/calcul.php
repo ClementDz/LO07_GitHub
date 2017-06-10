@@ -35,46 +35,168 @@
 
             <h2>Règlement actuel</h2>
             <p>
-            <ul>
-                <li>Règle_1 : somme CS+TM de TCBR = 54 &rarr; <b> <?php calcul_deux_para('CS', 'TM', 'TCBR', 54); ?> </b></li>
-                <li>Règle_2 : somme CS+TM de FCBR = 30 &rarr; <b> <?php calcul_deux_para('CS', 'TM', 'FCBR', 30); ?> </b></li>
-                <li>Règle_3 : somme CS de BR = 30 &rarr; <b><?php calcul_un_para('CS', 'TCBR', 30); ?> CS de BR </b></li>
-                <li>Règle_4 : somme TM de BR = 30 &rarr; <b><?php calcul_un_para('TM', 'BR', 30); ?> TM de BR </b></li>
-                <li>Règle_5 : somme ST de TCBR = 30 &rarr; <b> <?php calcul_un_para('ST', 'TCBR', 30); ?>  ST de TCBR</b></li>
-                <li>Règle_6 : somme ST de FCBR = 30 &rarr; <b><?php calcul_un_para('ST', 'FCBR', 30); ?>  ST de FCBR</b></li>
-                <li>Règle_7 : somme EC de BR = 12 &rarr; <b> <?php calcul_un_para('EC', 'BR', 12); ?>  EC de BR</b></li>
-                <li>Règle_8 : somme ME de BR = 4 &rarr; <b><?php calcul_un_para('ME', 'BR', 4); ?> ME de BR</b></li>
-                <li>Règle_9 : somme CT de BR = 4 &rarr; <b><?php
-                        calcul_un_para('CT', 'BR', 4);
-                        ;
-                        ?> </b></li>
-                <li>Règle_10 : somme ME+CT de BR = 16 &rarr; <b><?php calcul_deux_para('ME', 'CT', 'BR', 16); ?> </b></li>
-                <li>Règle_11 : somme UTT(CS+TM)	BR &rarr; <b><?php calcul_CS_TM_BR(); ?> </b></li>
-                <li>Règle_12 : SE doit être fait </li>
-                <li>Règle_13 : NPML doit être validé</li>
-            </ul>
+            <table border = 4 width=100%>
+                <tr>
+                    <th>Numéro</th>
+                    <th>Règle</th>
+                    <th>Résultat</th>
+                </tr>
+
+                <tr>
+                    <td>1</td>
+                    <td>somme CS+TM de TCBR</td>
+                    <td><?php calcul_deux_para('CS', 'TM', 'TCBR', 54); ?>/54</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>somme CS+TM de FCBR</td>
+                    <td><?php calcul_deux_para('CS', 'TM', 'FCBR', 30); ?>/30</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>somme CS de BR</td>
+                    <td><?php calcul_un_para('CS', 'TCBR', 30); ?>/30</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>somme TM de BR</td>
+                    <td><?php calcul_un_para('TM', 'BR', 30); ?>/30</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>somme CS+TM de BR</td>
+                    <td><?php calcul_deux_para('CS', 'TM', 'BR', 84); ?>/84</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>somme ST de FCBR</td>
+                    <td><?php calcul_un_para('ST', 'FCBR', 30); ?>/30</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>somme EC de BR</td>
+                    <td><?php calcul_un_para('EC', 'BR', 12); ?>/12</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>somme ME de BR</td>
+                    <td><?php calcul_un_para('ME', 'BR', 4); ?>/4</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>somme CT de BR</td>
+                    <td><?php calcul_un_para('CT', 'BR', 4); ?>/4</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>somme ME+CT de BR</td>
+                    <td><?php calcul_deux_para('ME', 'CT', 'BR', 16); ?>/16</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>somme UTT(CS+TM)BR</td>
+                    <td><?php calcul_CS_TM_BR(); ?></td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>SE doit être fait</td>
+                    <td><?php ?></td>
+                </tr>
+                <tr>
+                    <td>13</td>
+                    <td>NPML doit être validé</td>
+                    <td><?php ?></td>
+                </tr>
+            </table>
+
         </p>
 
         <h2>Règlement futur</h2>
         <p>
-        <ul>
-            <li>Règle_1 : somme CS+TM de TCBR = 42 &rarr; <b> <?php calcul_deux_para('CS', 'TM', 'TCBR', 42); ?> </b></li>
-            <li>Règle_2 : somme CS+TM de FCBR = 18 &rarr; <b> <?php calcul_deux_para('CS', 'TM', 'FCBR', 18); ?> </b></li>
-            <li>Règle_3 : somme CS de BR = 24 &rarr; <b><?php calcul_un_para('CS', 'BR', 24); ?> CS de BR </b></li>
-            <li>Règle_4 : somme TM de BR = 24 &rarr; <b><?php calcul_un_para('TM', 'BR', 24); ?> TM de BR </b></li>
-            <li>Règle_5 : somme CS+TM de BR = 84 &rarr; <b><?php calcul_deux_para('CS', 'TM', 'BR', 84); ?> TM de BR </b></li>
-            <li>Règle_6 : somme ST de TCBR = 30 &rarr; <b> <?php calcul_un_para('ST', 'TCBR', 30); ?>  ST de TCBR</b></li>
-            <li>Règle_7 : somme ST de FCBR = 30 &rarr; <b><?php calcul_un_para('ST', 'FCBR', 30); ?>  ST de FCBR</b></li>
-            <li>Règle_8 : somme EC de BR = 12 &rarr; <b> <?php calcul_un_para('EC', 'BR', 12); ?>  EC de BR</b></li>
-            <li>Règle_9 : somme ME de BR = 4 &rarr; <b><?php calcul_un_para('ME', 'BR', 4); ?> ME de BR</b></li>
-            <li>Règle_10 : somme CT de BR = 4 &rarr; <b><?php calcul_un_para('CT', 'BR', 4);?> </b></li>
-            <li>Règle_11 : somme ME+CT de BR = 16 &rarr; <b><?php calcul_deux_para('ME', 'CT', 'BR', 16); ?> </b></li>
-            <li>Règle_12 : somme UTT(CS+TM) de BR = 60 &rarr; <b><?php calcul_deux_para('CS', 'TM', 'BR', 60); ?> </b></li>
-            <li>Règle_13 : SE doit être fait </li>
-            <li>Règle_14 : NPML doit être validé</li>
-            <li>Règle_12 : somme = 180 &rarr; <b><?php calcul_total(); ?> </b></li>
 
-        </ul>
+        <table border = 4 width=100%>
+            <tr>
+                <th>Numéro</th>
+                <th>Règle</th>
+                <th>Résultat</th>
+            </tr>
+
+            <tr>
+                <td>1</td>
+                <td>somme CS+TM de TCBR</td>
+                <td><?php calcul_deux_para('CS', 'TM', 'TCBR', 42); ?>/42</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>somme CS+TM de FCBR</td>
+                <td><?php calcul_deux_para('CS', 'TM', 'FCBR', 18); ?>/18</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>somme CS de BR</td>
+                <td><?php calcul_un_para('CS', 'BR', 24); ?>/24</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>somme TM de BR</td>
+                <td><?php calcul_un_para('TM', 'BR', 24); ?>/24</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>somme CS+TM de BR</td>
+                <td><?php calcul_deux_para('CS', 'TM', 'BR', 84); ?>/84</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>somme ST de TCBR</td>
+                <td><?php calcul_un_para('ST', 'TCBR', 30); ?>/30</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>somme ST de FCBR</td>
+                <td><?php calcul_un_para('ST', 'FCBR', 30); ?>/30</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>somme EC de BR</td>
+                <td><?php calcul_un_para('EC', 'BR', 12); ?>/12</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>somme ME de BR</td>
+                <td><?php calcul_un_para('ME', 'BR', 4); ?>/4</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td>somme CT de BR</td>
+                <td><?php calcul_un_para('CT', 'BR', 4); ?>/4</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>somme ME+CT de BR</td>
+                <td><?php calcul_deux_para('ME', 'CT', 'BR', 16); ?>/16</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>somme UTT(CS+TM)</td>
+                <td><?php calcul_deux_para('CS', 'TM', 'BR', 60); ?></td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td>SE doit être fait</td>
+                <td><?php ?></td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td>NPML doit être validé</td>
+                <td><?php ?></td>
+            </tr>
+             <tr>
+                <td>15</td>
+                <td>Somme</td>
+                <td><?php calcul_total(); ?>/180</td>
+            </tr>
+        </table>
     </p>
 </div>
 </body> 
@@ -101,12 +223,13 @@ AND `etudiant`.num_etu = " . $_SESSION['num_etu'] . ")");
             //echo"test2";
             //var_dump($somme[0]);
             $restant = $total - $somme[0];
-            if ($restant <= 0) {
-                $restant = abs($restant);
-                echo "Vous avez déjà validé " . $restant . " crédits de plus que necessaire";
-            } else {
-                echo "Il vous manque " . $restant . " crédits";
-            }
+            echo $somme[0];
+            /* if ($restant <= 0) {
+              $restant = abs($restant);
+              echo "Vous avez déjà validé " . $restant . " crédits de plus que necessaire";
+              } else {
+              echo "Il vous manque " . $restant . " crédits";
+              } */
         }
         $reponse->closeCursor();
     } catch (Exception $e) {
@@ -128,12 +251,13 @@ AND `semestre_element_formation`.`sem_id`IN (SELECT DISTINCT `semestre`.sem_id F
 AND `etudiant`.num_etu = " . $_SESSION['num_etu'] . ")");
         while ($somme = $reponse->fetch()) {
             $restant = $total - $somme[0];
-            if ($restant <= 0) {
-                $restant = abs($restant);
-                echo "Vous avez déjà validé " . $restant . " crédits de plus que necessaire";
-            } else {
-                echo "Il vous manque " . $restant . " crédits";
-            }
+            echo $somme[0];
+            /* if ($restant <= 0) {
+              $restant = abs($restant);
+              echo "Vous avez déjà validé " . $restant . " crédits de plus que necessaire";
+              } else {
+              echo "" . $restant . "";
+              } */
         }
         $reponse->closeCursor();
     } catch (Exception $e) {
@@ -153,7 +277,6 @@ AND `element_formation`.`affectation` = 'BR'
 AND `semestre_element_formation`.`sem_id`IN (SELECT DISTINCT `semestre`.sem_id FROM `cursus`, `semestre`, `etudiant` WHERE `semestre`.label_cursus = `cursus`.label_cursus AND `cursus`.num_etu = `etudiant`.num_etu
 AND `etudiant`.num_etu = " . $_SESSION['num_etu'] . ")");
         while ($somme = $reponse->fetch()) {
-
             echo $somme[0];
         }
         $reponse->closeCursor();

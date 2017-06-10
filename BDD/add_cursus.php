@@ -34,14 +34,14 @@ try {
     die('Erreur : ' . $e->getMessage());
 }
 
-var_dump($_SESSION['num_etu']);
+/*var_dump($_SESSION['num_etu']);
 var_dump($_POST['sem_seq']);
 var_dump($_POST['resultat']);
 var_dump($_POST['sem_seq']);
-var_dump($_POST['credit']);
+var_dump($_POST['credit']);*/
 
 
 // Redirection du visiteur vers la page du minichat
-//header('Location: ../Etudiant/Anciens_cours.php');
+header('Location: ../Etudiant/Anciens_cours.php');
 //mysql_query($sql) or die(mysql_error());
 ?>

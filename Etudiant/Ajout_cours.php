@@ -34,7 +34,7 @@
 
             <p><h1>Ajout de cours pour l'étudiant <?php echo $_SESSION['nom']; ?></h1></p>
         <p><h2>Ajout de  <?php cours_selec(); ?> au cursus</h2></p>
-
+        <i>Si vous choisissez un NPML, veuillez rentrer "ADM" et des informations quelconques</i>
     <form method='post' action="../BDD/add_cursus.php">
         <fieldset>
             <legend>Résultat à l'UE</legend>
@@ -111,8 +111,9 @@
                         $reponse = $bdd->query('SELECT sigle, affectation FROM element_formation WHERE sigle="' . $cours . '"');
                         //$reponse->execute();
                         //On enregistre en les donneés dans les var de sessions pour les enregistrer plus tard dans la BDD
-                        $donnees = $reponse->fetchColumn(1);
-                        $_SESSION['affectation'] = $donnees;
+                        $donnees = $reponse->fetch();
+                        $_SESSION['affectation'] = $donnees[1];
+                        $_SESSION['sigle'] = $donnees[0];
 
                         //var_dump($_SESSION['sigle'] = $cours);
                     }
